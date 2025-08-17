@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef } from 'react';
@@ -38,19 +37,46 @@ const AboutSection = () => {
               À propos de moi
             </motion.h2>
 
-            <motion.p variants={fadeInUp} className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-              Passionné par la création de solutions logicielles élégantes et performantes, je possède plusieurs années d'expérience dans le développement d'applications web complètes. Mon parcours m'a permis de maîtriser à la fois les technologies frontend et backend, me permettant de transformer une idée simple en un produit robuste et prêt pour le marché.
+            <motion.p
+              variants={fadeInUp}
+              className="text-lg text-gray-600 dark:text-gray-300 mb-6"
+            >
+              Passionné par la création de solutions logicielles élégantes et
+              performantes, je possède plusieurs années d'expérience dans le
+              développement d'applications web complètes. Mon parcours m'a
+              permis de maîtriser à la fois les technologies frontend et
+              backend, me permettant de transformer une idée simple en un
+              produit robuste et prêt pour le marché.
             </motion.p>
-            
-            <motion.p variants={fadeInUp} className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Voici quelques-unes des technologies avec lesquelles j'ai récemment travaillé :
+
+            <motion.p
+              variants={fadeInUp}
+              className="text-lg text-gray-600 dark:text-gray-300 mb-8"
+            >
+              Voici quelques-unes des technologies avec lesquelles j'ai
+              récemment travaillé :
             </motion.p>
 
             <motion.ul variants={fadeInUp} className="space-y-4">
               {specialities.map((item, index) => (
                 <li key={index} className="flex items-center">
-                  <svg className="w-6 h-6 text-primary-500 dark:text-primary-400 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                  <span className="text-gray-700 dark:text-gray-200">{item}</span>
+                  <svg
+                    className="w-6 h-6 text-primary-500 dark:text-primary-400 mr-3 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+                  <span className="text-gray-700 dark:text-gray-200">
+                    {item}
+                  </span>
                 </li>
               ))}
             </motion.ul>
@@ -64,8 +90,8 @@ const AboutSection = () => {
             <div className="relative w-full max-w-sm">
               <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-orange-500 rounded-full -inset-4 blur-xl opacity-30"></div>
               <img
-                src="/images/eko.jpg"
-                alt="Photo de Jeannot Frederic NGOULEFACK KAMGA"
+                src="/images/eko1.jpg"
+                alt="Photo de Christophe Cédric EKOBENA OMGBA"
                 className="relative w-full h-auto rounded-full object-cover border-8 border-white dark:border-gray-800 shadow-2xl"
               />
             </div>

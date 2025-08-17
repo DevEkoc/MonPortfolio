@@ -2,7 +2,13 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { motion, useInView, useMotionValue, useSpring, useAnimation } from 'framer-motion';
+import {
+  motion,
+  useInView,
+  useMotionValue,
+  useSpring,
+  useAnimation,
+} from 'framer-motion';
 import Container from './Container';
 import { staggerContainer, fadeInUp, buttonVariants } from '@/lib/animations';
 
@@ -37,21 +43,57 @@ const stats = [
     value: 50,
     label: 'Projets Réalisés',
     icon: (
-      <svg className="w-8 h-8 mx-auto mb-2 text-primary-500 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h6m-6 4h6m-6 4h6" /></svg>
+      <svg
+        className="w-8 h-8 mx-auto mb-2 text-primary-500 dark:text-primary-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h6m-6 4h6m-6 4h6"
+        />
+      </svg>
     ),
   },
   {
     value: 5,
     label: "Années d'expérience",
     icon: (
-      <svg className="w-8 h-8 mx-auto mb-2 text-primary-500 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+      <svg
+        className="w-8 h-8 mx-auto mb-2 text-primary-500 dark:text-primary-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+        />
+      </svg>
     ),
   },
   {
     value: 100,
     label: 'Satisfaction Client',
     icon: (
-      <svg className="w-8 h-8 mx-auto mb-2 text-primary-500 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 18.734V11.5a2 2 0 012-2h2.646M4 11.5h3M4 15.5h3m4-8.5V4a2 2 0 012-2h2a2 2 0 012 2v1.5" /></svg>
+      <svg
+        className="w-8 h-8 mx-auto mb-2 text-primary-500 dark:text-primary-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 18.734V11.5a2 2 0 012-2h2.646M4 11.5h3M4 15.5h3m4-8.5V4a2 2 0 012-2h2a2 2 0 012 2v1.5"
+        />
+      </svg>
     ),
   },
 ];
@@ -71,7 +113,7 @@ export default function Hero() {
     const handleScroll = () => {
       const currentY = window.scrollY;
       const isScrollingDown = currentY > lastY.current;
-      
+
       // Update lastY position
       lastY.current = currentY;
 
@@ -105,8 +147,8 @@ export default function Hero() {
             className="md:col-span-1 flex justify-center"
           >
             <img
-              src="/images/eko.jpg"
-              alt="Photo de Jeannot Frederic NGOULEFACK KAMGA"
+              src="/images/eko1.jpg"
+              alt="Photo de Christophe Cédric EKOBENA OMGBA"
               className="w-64 h-64 lg:w-80 lg:h-80 rounded-full object-cover border-8 border-white dark:border-gray-800 shadow-2xl"
             />
           </motion.div>
@@ -120,9 +162,10 @@ export default function Hero() {
               variants={fadeInUp}
               className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white"
             >
-              Jeannot Frederic NGOULEFACK KAMGA
+              Christophe Cédric <br />
+              EKOBENA OMGBA
             </motion.h2>
-            
+
             <motion.h1
               variants={fadeInUp}
               className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400 my-4 leading-relaxed py-2"
@@ -134,15 +177,19 @@ export default function Hero() {
               variants={fadeInUp}
               className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto md:mx-0"
             >
-              Spécialisé en React, Next.js, et Django. Je transforme vos idées en
-              applications web modernes, performantes et exceptionnelles.
+              Spécialisé en React, Next.js, et Django. Je transforme vos idées
+              en applications web modernes, performantes et exceptionnelles.
             </motion.p>
 
             <motion.div
               variants={fadeInUp}
               className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
             >
-              <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
+              <motion.div
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
                 <Link
                   href="#projects"
                   className="btn-primary text-lg px-8 py-4 inline-flex items-center shadow-lg shadow-primary-500/20"
@@ -150,7 +197,11 @@ export default function Hero() {
                   Voir mes projets
                 </Link>
               </motion.div>
-              <motion.div variants={buttonVariants} whileHover="hover" whileTap="tap">
+              <motion.div
+                variants={buttonVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
                 <Link
                   href="#contact"
                   className="btn-secondary text-lg px-8 py-4 inline-flex items-center"
@@ -163,7 +214,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Stats Section - continues to animate on every scroll */}
-        <motion.div 
+        <motion.div
           className="mt-24 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
           variants={staggerContainer}
           initial="hidden"
