@@ -1,0 +1,26 @@
+rules:
+
+- Utiliser TypeScript pour le front-end avec Next.js
+- Utiliser Tailwind CSS pour le style avec mode sombre basé sur la classe `dark`
+- Utiliser Framer Motion pour les animations fluides
+- Utiliser Django REST Framework pour le back-end
+- Utiliser MySQL comme base de données
+- Respecter PEP8 (Python) et ESLint/Prettier (TypeScript)
+
+- Organiser le code Next.js dans /src (pages, components, styles, lib, types)
+- Organiser Django par applications logiques (blog, projects, contact)
+
+- Toutes les données dynamiques doivent passer par l’API REST versionnée `/api/v1/...`
+- Utiliser Axios pour les requêtes HTTP côté front
+
+- Interface moderne, minimaliste et responsive
+- Palette : bleus profonds, gris doux, accents vibrants
+- Mode clair/sombre avec bouton toggle
+- Micro-animations au hover/scroll
+
+- Composants React en PascalCase
+- Fichiers Python en snake_case
+- Séparation stricte UI / logique / données
+
+- Variables sensibles dans `.env.local` (Next.js) et `.env` (Django)
+- CORS autorisé uniquement pour domaines de prod
