@@ -49,7 +49,7 @@
 
 #### 7. **Administration**
 
-- ✅ Superuser créé (admin/admin@example.com)
+- ✅ Superuser créé (admin/admin@example.com : rootpassword)
 - ✅ Interface d'administration accessible sur `/admin/`
 
 #### 8. **Tests de validation**

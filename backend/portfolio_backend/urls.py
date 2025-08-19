@@ -18,19 +18,23 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework.routers import DefaultRouter
+from projects.views import ProjectViewSet, TechnologyViewSet
 from . import views
+
+# API v1 Router
+router = DefaultRouter()
+router.register(r'projects', ProjectViewSet, basename='project')
+router.register(r'technologies', TechnologyViewSet, basename='technology')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    # API v1
-    path('api/v1/', include([
-        path('health/', views.health_check, name='health_check'),
-        # Les autres endpoints seront ajoutés ici dans les phases suivantes
-        # path('blog/', include('blog.urls')),
-        # path('projects/', include('projects.urls')),
-        # path('contact/', include('contact.urls')),
-    ])),
+    # API v1 Endpoints
+    path('api/v1/health/', views.health_check, name='health_check'),
+    path('api/v1/', include(router.urls)),
+
+    # Les autres apps (blog, contact) pourront être ajoutées au routeur ici.
 ]
 
 # Serve media files in development
