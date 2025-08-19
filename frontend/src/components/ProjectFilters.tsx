@@ -10,10 +10,18 @@ interface ProjectFiltersProps {
     activeTech: string;
 }
 
-const ProjectFilters = ({ onFilterChange, onClearFilters, activeTech }: ProjectFiltersProps) => {
+const ProjectFilters = ({
+    onFilterChange,
+    onClearFilters,
+    activeTech,
+}: ProjectFiltersProps) => {
     const [technologies, setTechnologies] = useState<Technology[]>([]);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        // éviter l'hydratation côté serveur
+        setMounted(true);
+
         const fetchTech = async () => {
             const techData = await getTechnologies();
             setTechnologies(techData);
@@ -29,6 +37,11 @@ const ProjectFilters = ({ onFilterChange, onClearFilters, activeTech }: ProjectF
             onClearFilters();
         }
     };
+
+    // 🚨 Important : ne pas rendre le <select> avant hydratation
+    if (!mounted) {
+        return null;
+    }
 
     return (
         <div className="flex flex-col sm:flex-row gap-4 mb-8 items-center">

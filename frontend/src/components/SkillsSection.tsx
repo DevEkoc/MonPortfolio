@@ -10,10 +10,7 @@ const SkillsSection = () => {
     const otherSkills = skillsData.filter(s => !s.featured);
 
     return (
-        <section
-            id="skills"
-            className="py-24 bg-gray-50 dark:bg-gray-900"
-        >
+        <section id="skills" className="py-24 bg-gray-50 dark:bg-gray-900">
             <Container>
                 {/* En-tête de la section */}
                 <motion.div
@@ -54,25 +51,23 @@ const SkillsSection = () => {
                                 {category.description}
                             </p>
                             <ul className="space-y-2">
-                                {category.skills.map(
-                                    (skill, skillIndex) => (
-                                        <li
-                                            key={skillIndex}
-                                            className="flex items-center text-gray-700 dark:text-gray-200"
-                                        >
-                                            {skill.icon ? (
-                                                <span className="mr-3">
-                                                    {skill.icon}
-                                                </span>
-                                            ) : (
-                                                <span className="mr-3 h-6 w-6 text-primary-500">
-                                                    -
-                                                </span>
-                                            )}
-                                            <span>{skill.name}</span>
-                                        </li>
-                                    )
-                                )}
+                                {category.skills.map((skill, skillIndex) => (
+                                    <li
+                                        key={skillIndex}
+                                        className="flex items-center text-gray-700 dark:text-gray-200"
+                                    >
+                                        {skill.icon ? (
+                                            <span className="mr-3">
+                                                {skill.icon}
+                                            </span>
+                                        ) : (
+                                            <span className="mr-3 h-6 w-6 text-primary-500">
+                                                -
+                                            </span>
+                                        )}
+                                        <span>{skill.name}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </motion.div>
                     ))}

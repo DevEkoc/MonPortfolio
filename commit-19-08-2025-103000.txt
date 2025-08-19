@@ -1,0 +1,20 @@
+feat(frontend, backend): Implémentation de la section Projets et initiation du Backend Blog
+
+Ce commit introduit la section complète des projets frontend (Phase 08) et initie le développement du blog backend (Phase 09). Il inclut également des améliorations générales de la qualité du code.
+
+Frontend (Phase 08) :
+- Implémentation des composants `ProjectsSection`, `ProjectCard` et `ProjectFilters` pour l'affichage et le filtrage des projets.
+- Intégration des appels API pour récupérer les données des projets et des technologies depuis le backend.
+- Configuration de `next/image` pour un affichage optimisé des images.
+- Implémentation de la logique de pagination UI avec un bouton "Voir plus".
+- Assurer une mise en page en grille réactive pour les cartes de projet.
+- Application du linting et du formatage sur l'ensemble de la base de code frontend pour un style cohérent.
+- Correction d'un avertissement de variable inutilisée dans `src/components/ProjectsSection.tsx`.
+
+Backend (initiation Phase 09) :
+- Création/modification des modèles de blog, de l'administration, des sérialiseurs, des vues et des migrations pour le modèle `Post`.
+- Cela jette les bases de l'API CRUD du blog.
+
+Général :
+- Ajout de `PHASE_08_README.md` pour documenter la section des projets frontend terminée.
+- Inclusion de la commande `seed_db.py` pour peupler la base de données avec des exemples de données.

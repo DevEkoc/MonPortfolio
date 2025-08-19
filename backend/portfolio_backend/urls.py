@@ -20,12 +20,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from projects.views import ProjectViewSet, TechnologyViewSet
+from blog.views import PostViewSet
 from . import views
 
 # API v1 Router
 router = DefaultRouter()
 router.register(r'projects', ProjectViewSet, basename='project')
 router.register(r'technologies', TechnologyViewSet, basename='technology')
+router.register(r'blog', PostViewSet, basename='blog')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
