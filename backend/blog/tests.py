@@ -201,11 +201,12 @@ class PostAPITests(APITestCase):
         """
         self.client.force_authenticate(user=self.staff_user)
         url = reverse('blog-detail', kwargs={'slug': self.post1.slug})
-        data = {'title': 'Updated Title'}
+        data = {'title': 'Updated Title', 'slug': 'updated-title', 'content': 'Updated content.', 'tags': [], 'published_at': self.post1.published_at}
         response = self.client.patch(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.post1.refresh_from_db()
         self.assertEqual(self.post1.title, 'Updated Title')
+        self.assertEqual(self.post1.slug, 'updated-title')
 
     def test_delete_post_anonymous_user(self):
         """
@@ -225,3 +226,68 @@ class PostAPITests(APITestCase):
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Post.objects.count(), 2)
+
+class PostModelTests(APITestCase):
+    def test_published_at_set_on_publish(self):
+        """
+        published_at should be set when a draft post is published.
+        """
+        post = Post.objects.create(
+            title='Test Post',
+            slug='test-post',
+            content='Content',
+            published=False
+        )
+        self.assertIsNone(post.published_at)
+
+        post.published = True
+        post.save()
+        self.assertIsNotNone(post.published_at)
+        self.assertLessEqual(post.published_at, timezone.now())
+
+    def test_published_at_not_changed_on_republish(self):
+        """
+        published_at should not change if a published post is saved again.
+        """
+        initial_published_at = timezone.now() - timezone.timedelta(days=1)
+        post = Post.objects.create(
+            title='Test Post',
+            slug='test-post',
+            content='Content',
+            published=True,
+            published_at=initial_published_at
+        )
+        
+        # Save again without changing published status
+        post.content = "Updated content"
+        post.save()
+        self.assertEqual(post.published_at, initial_published_at)
+
+    def test_published_at_set_to_none_on_unpublish(self):
+        """
+        published_at should be set to None when a published post is unpublished.
+        """
+        post = Post.objects.create(
+            title='Test Post',
+            slug='test-post',
+            content='Content',
+            published=True,
+            published_at=timezone.now()
+        )
+        self.assertIsNotNone(post.published_at)
+
+        post.published = False
+        post.save()
+        self.assertIsNone(post.published_at)
+
+    def test_published_at_none_for_new_draft(self):
+        """
+        published_at should be None for a newly created draft post.
+        """
+        post = Post.objects.create(
+            title='Draft Post',
+            slug='draft-post',
+            content='Draft Content',
+            published=False
+        )
+        self.assertIsNone(post.published_at)

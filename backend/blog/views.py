@@ -1,8 +1,9 @@
-from rest_framework import viewsets, filters
+from rest_framework import viewsets, filters, generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from django_filters.rest_framework import DjangoFilterBackend
+from taggit.models import Tag
 from .models import Post
-from .serializers import PostSerializer
+from .serializers import PostSerializer, TagSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-published_at')
@@ -24,3 +25,14 @@ class PostViewSet(viewsets.ModelViewSet):
         else:
             self.permission_classes = [IsAuthenticatedOrReadOnly]
         return [permission() for permission in self.permission_classes]
+
+class TagCloudView(generics.ListAPIView):
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    pagination_class = None
+
+    def get_queryset(self):
+        # Filter tags to only include those associated with published posts
+        published_tags_ids = Post.objects.filter(published=True).values_list('tags__id', flat=True).distinct()
+        return Tag.objects.filter(id__in=published_tags_ids)

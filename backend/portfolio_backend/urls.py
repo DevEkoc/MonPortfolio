@@ -20,7 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.routers import DefaultRouter
 from projects.views import ProjectViewSet, TechnologyViewSet
-from blog.views import PostViewSet
+from blog.views import PostViewSet, TagCloudView
 from . import views
 
 # API v1 Router
@@ -34,6 +34,7 @@ urlpatterns = [
     
     # API v1 Endpoints
     path('api/v1/health/', views.health_check, name='health_check'),
+    path('api/v1/blog/tags/', TagCloudView.as_view(), name='blog-tags'),
     path('api/v1/', include(router.urls)),
 
     # Les autres apps (blog, contact) pourront être ajoutées au routeur ici.

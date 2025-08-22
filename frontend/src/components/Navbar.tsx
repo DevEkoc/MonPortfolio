@@ -7,11 +7,11 @@ import Container from './Container';
 import ThemeToggle from './ThemeToggle';
 
 const navigation = [
-    { name: 'Accueil', href: '#home' },
-    { name: 'À propos', href: '#about' },
-    { name: 'Projets', href: '#projects' },
-    { name: 'Blog', href: '#blog' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Accueil', href: '/#home' },
+    { name: 'À propos', href: '/#about' },
+    { name: 'Projets', href: '/#projects' },
+    { name: 'Blog', href: '/#blog' },
+    { name: 'Contact', href: '/#contact' },
 ];
 
 export default function Navbar() {
@@ -27,7 +27,7 @@ export default function Navbar() {
                 <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <Link
-                        href="#home"
+                        href="/#home"
                         className="text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                     >
                         DevEkoc.com
