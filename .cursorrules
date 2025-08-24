@@ -24,3 +24,7 @@ rules:
 
 - Variables sensibles dans `.env.local` (Next.js) et `.env` (Django)
 - CORS autorisé uniquement pour domaines de prod
+
+- Revérifier le code react après chaque phase avec lint et format
+- Ecrire des tests unitaires robustes pour chaque phase backend
+- Ecrire des scripts python permettant de générer des données factices pour la BD quand c'est utile

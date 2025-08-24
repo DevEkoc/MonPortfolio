@@ -4,6 +4,7 @@ import AboutSection from '@/components/AboutSection';
 import SkillsSection from '@/components/SkillsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import BlogSection from '@/components/BlogSection';
+import ContactForm from '@/components/ContactForm';
 
 export default function Home() {
     return (
@@ -13,6 +14,7 @@ export default function Home() {
             <SkillsSection />
             <ProjectsSection />
             <BlogSection />
+            <ContactForm />
         </Layout>
     );
 }

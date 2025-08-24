@@ -1,0 +1,12 @@
+Cannot read properties of undefined (reading 'find')
+
+src\app\page.tsx (17:13) @ Home
+
+
+  15 |             <ProjectsSection />
+  16 |             <BlogSection />
+> 17 |             <ContactForm />
+     |             ^
+  18 |         </Layout>
+  19 |     );
+  20 | }

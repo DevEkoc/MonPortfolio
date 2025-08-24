@@ -9,23 +9,21 @@ class TagSerializer(serializers.ModelSerializer):
         fields = ("id", "name", "slug")
 
 class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
-    tags = TagListSerializerField()
+    tags = TagListSerializerField(required=False)
+    author = serializers.StringRelatedField()
 
     class Meta:
         model = Post
         fields = (
             'id',
             'title',
-            'slug',
             'excerpt',
             'content',
-            'tags',
             'published',
-            'published_at',
+            'author',
+            'tags',
             'created_at',
             'updated_at',
         )
-        read_only_fields = ('created_at', 'updated_at')
-        extra_kwargs = {
-            'content': {'required': False},
-        }
+        # Other read-only fields that are not model-generated can stay here
+        read_only_fields = ('id', 'author', 'created_at', 'updated_at')

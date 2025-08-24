@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 export default function ThemeToggle() {
     const { theme, toggleTheme, mounted } = useTheme();
 
-    if (!mounted) {
+    if (!mounted || !theme) {
         return (
             <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-700 animate-pulse" />
         );
