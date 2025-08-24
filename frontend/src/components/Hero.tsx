@@ -2,23 +2,22 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
-import {
-    motion,
-    useInView,
-    useMotionValue,
-    useSpring,
-    useAnimation,
-} from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring } from 'framer-motion';
 import Image from 'next/image';
 import Container from './Container';
-import { staggerContainer, fadeInUp, buttonVariants } from '@/lib/animations';
+import {
+    staggerContainer,
+    fadeInUp,
+    buttonVariants,
+    useInViewAnimation,
+} from '@/lib/animations';
 
-// Component for animating numbers
+// Le composant AnimatedNumbers reste inchangé car sa logique est autonome et correcte.
 function AnimatedNumbers({ value }: { value: number }) {
     const ref = useRef<HTMLSpanElement>(null);
     const motionValue = useMotionValue(0);
     const springValue = useSpring(motionValue, { damping: 30, stiffness: 100 });
-    const isInView = useInView(ref, { once: false }); // Animate numbers every time
+    const isInView = useInView(ref, { once: false });
 
     useEffect(() => {
         if (isInView) {
@@ -38,7 +37,6 @@ function AnimatedNumbers({ value }: { value: number }) {
     return <span ref={ref}>0</span>;
 }
 
-// Data for the stats section
 const stats = [
     {
         value: 50,
@@ -100,49 +98,23 @@ const stats = [
 ];
 
 export default function Hero() {
-    const controls = useAnimation();
-    const ref = useRef(null);
-    const isInView = useInView(ref, { threshold: 0.2, once: true }); // Use once:true for initial load detection
-    const lastY = useRef(0);
-
-    useEffect(() => {
-        // Show animation on initial load if in view
-        if (isInView) {
-            controls.start('visible');
-        }
-
-        const handleScroll = () => {
-            const currentY = window.scrollY;
-            const isScrollingDown = currentY > lastY.current;
-
-            // Update lastY position
-            lastY.current = currentY;
-
-            // Trigger animation only when scrolling down
-            if (isScrollingDown) {
-                controls.start('visible');
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [isInView, controls]);
+    // Utilisation du hook pour la section des statistiques
+    const statsAnimationControls = useInViewAnimation(false, 0.2);
 
     return (
         <section
             id="home"
-            ref={ref} // Attach ref to the section to track its visibility
             className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 py-20 overflow-hidden"
         >
             <Container>
-                {/* Two-column layout for the main hero content */}
+                {/* Le contenu principal s'anime au chargement */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center"
                     variants={staggerContainer}
                     initial="hidden"
-                    animate={controls} // Control animation manually
+                    animate="visible" // Animation au montage
                 >
-                    {/* Left Column: Large Photo */}
+                    {/* Colonne de Gauche: Photo */}
                     <motion.div
                         variants={fadeInUp}
                         className="md:col-span-1 flex justify-center"
@@ -156,9 +128,9 @@ export default function Hero() {
                         />
                     </motion.div>
 
-                    {/* Right Column: Text Content */}
+                    {/* Colonne de Droite: Contenu Texte */}
                     <motion.div
-                        variants={staggerContainer} // Stagger the text elements inside
+                        variants={staggerContainer}
                         className="md:col-span-2 text-center md:text-left"
                     >
                         <motion.h2
@@ -217,13 +189,11 @@ export default function Hero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Stats Section - continues to animate on every scroll */}
+                {/* Section des statistiques - utilise maintenant le hook */}
                 <motion.div
-                    className="mt-24 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
+                    {...statsAnimationControls}
                     variants={staggerContainer}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.2 }}
+                    className="mt-24 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8"
                 >
                     {stats.map((stat, index) => (
                         <motion.div

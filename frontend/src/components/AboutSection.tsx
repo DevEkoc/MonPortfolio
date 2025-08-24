@@ -1,13 +1,16 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Container from './Container';
 import Image from 'next/image';
-import { staggerContainer, fadeInUp } from '@/lib/animations';
+import {
+    staggerContainer,
+    fadeInUp,
+    useInViewAnimation,
+} from '@/lib/animations';
 import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
 
-// Données pour la section
+// Les données restent les mêmes...
 const educationData = [
     {
         degree: "Diplôme d'Ingénieur en Informatique",
@@ -56,17 +59,15 @@ const experienceData = [
 ];
 
 const AboutSection = () => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, amount: 0.1 });
+    // Utilisation du nouveau hook centralisé
+    const animationControls = useInViewAnimation(true, 0.1);
 
     return (
         <motion.section
             id="about"
-            ref={ref}
             className="py-24 bg-gray-50 dark:bg-gray-900"
+            {...animationControls} // Application des contrôles d'animation
             variants={staggerContainer}
-            initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
         >
             <Container>
                 <div className="text-center mb-16">
@@ -79,7 +80,7 @@ const AboutSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-12">
-                    {/* Colonne de Gauche: Éducation & Photo (prend 2/5 de la largeur) */}
+                    {/* Colonne de Gauche: Éducation & Photo */}
                     <motion.div
                         variants={fadeInUp}
                         className="lg:col-span-2 space-y-8"
@@ -123,7 +124,7 @@ const AboutSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* Colonne de Droite: Bio & Expérience (prend 3/5 de la largeur) */}
+                    {/* Colonne de Droite: Bio & Expérience */}
                     <motion.div
                         variants={fadeInUp}
                         className="lg:col-span-3"

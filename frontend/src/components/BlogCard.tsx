@@ -4,14 +4,11 @@ import { motion } from 'framer-motion';
 import { Post } from '@/types/blog';
 import { FiCalendar, FiTag } from 'react-icons/fi';
 
+import { fadeInUp } from '@/lib/animations';
+
 interface BlogCardProps {
     post: Post;
 }
-
-const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-};
 
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
     const publishedDate = post.published_at
@@ -24,7 +21,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 
     return (
         <motion.div
-            variants={cardVariants}
+            variants={fadeInUp}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300"
         >
             <Link href={`/blog/${post.slug}`} className="block">
