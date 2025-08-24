@@ -17,6 +17,7 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
         fields = (
             'id',
             'title',
+            'slug',
             'excerpt',
             'content',
             'published',
