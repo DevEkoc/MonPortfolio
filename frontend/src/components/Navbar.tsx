@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Container from './Container';
 import ThemeToggle from './ThemeToggle';
@@ -28,9 +29,18 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link
                         href="/#home"
-                        className="text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                        className="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                     >
-                        DevEkoc.com
+                        {/* <Image
+                            src="/logo.svg"
+                            alt="Logo DevEkoc"
+                            width={120}
+                            height={120}
+                            className="dark:invert"
+                        /> */}
+                        <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400 my-4 leading-relaxed">
+                            DevEkoc.com
+                        </span>
                     </Link>
 
                     {/* Navigation desktop */}

@@ -47,10 +47,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     }
 
     const publishedDate = post.published_at
-        ? new Date(post.published_at).toLocaleDateString('fr-FR', {
+        ? new Date(post.published_at).toLocaleString('fr-FR', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: false,
           })
         : 'Non publié';
 
@@ -72,6 +75,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                                     <div className="flex items-center flex-wrap gap-2">
                                         <FiTag className="mr-1.5" />
                                         {post.tags.join(', ')}
+                                        {/* {post.tags.map((tag, index) => (
+                                            <span
+                                                key={index}
+                                                className="inline-block bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full"
+                                            >
+                                                {tag}
+                                            </span>
+                                        ))} */}
                                     </div>
                                 )}
                             </div>
@@ -86,7 +97,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         <div
                             className="prose dark:prose-invert lg:prose-xl max-w-4xl mx-auto"
                             dangerouslySetInnerHTML={{
-                                __html: post.content.replace(/\n/g, '<br />'),
+                                __html: post.content,
                             }}
                         ></div>
                     </article>

@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'taggit',
+    'django_prose_editor',
     
     # Local apps
     'blog',

@@ -25,6 +25,7 @@ class PostSerializer(TaggitSerializer, serializers.ModelSerializer):
             'tags',
             'created_at',
             'updated_at',
+            'published_at',
         )
         # Other read-only fields that are not model-generated can stay here
-        read_only_fields = ('id', 'author', 'created_at', 'updated_at')
+        read_only_fields = ('id', 'author', 'created_at', 'updated_at', 'published_at')

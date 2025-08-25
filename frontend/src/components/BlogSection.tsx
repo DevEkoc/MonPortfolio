@@ -76,7 +76,7 @@ const BlogSection: React.FC = () => {
     };
 
     return (
-        <section id="blog" className="py-20 bg-gray-50 dark:bg-gray-900">
+        <section id="blog" className="py-16 bg-gray-50 dark:bg-gray-900">
             <Container>
                 <motion.div {...animationControls} variants={staggerContainer}>
                     <motion.div

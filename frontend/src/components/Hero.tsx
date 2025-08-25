@@ -28,7 +28,7 @@ function AnimatedNumbers({ value }: { value: number }) {
     useEffect(() => {
         springValue.on('change', latest => {
             if (ref.current) {
-                const suffix = value === 5 ? '+' : '';
+                const suffix = value >= 1 ? '+' : '';
                 ref.current.textContent = latest.toFixed(0) + suffix;
             }
         });
@@ -58,7 +58,7 @@ const stats = [
         ),
     },
     {
-        value: 5,
+        value: 3,
         label: "Années d'expérience",
         icon: (
             <svg
@@ -152,9 +152,13 @@ export default function Hero() {
                             variants={fadeInUp}
                             className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto md:mx-0"
                         >
-                            Spécialisé en React, Next.js, et Django. Je
-                            transforme vos idées en applications web modernes,
-                            performantes et exceptionnelles.
+                            {/* J’aide les entreprises et particuliers à transformer
+                            leurs idées en solutions logicielles innovantes,
+                            performantes et durables */}
+                            Ingénieur logiciel engagé, je ne me limite pas à
+                            écrire du code : je crée des expériences numériques
+                            pour les entreprises et les paticuliers, qui
+                            valorisent les projets et accélèrent la croissance.
                         </motion.p>
 
                         <motion.div
@@ -170,7 +174,7 @@ export default function Hero() {
                                     href="#projects"
                                     className="btn-primary text-lg px-8 py-4 inline-flex items-center shadow-lg shadow-primary-500/20"
                                 >
-                                    Voir mes projets
+                                    Voir mes réalisations
                                 </Link>
                             </motion.div>
                             <motion.div

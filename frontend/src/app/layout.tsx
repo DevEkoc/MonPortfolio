@@ -13,11 +13,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-    title: 'Portfolio Développeur',
+    title: 'DevEkoc - Ingénieur Logiciel',
     description:
-        "Portfolio personnel d'un développeur logiciel - Projets, compétences et expérience",
-    keywords: ['développeur', 'portfolio', 'projets', 'compétences', 'web'],
-    authors: [{ name: 'Développeur Portfolio' }],
+        'Portfolio personnel de Christophe Ekobena, ingénieur logiciel - Projets, compétences et expérience',
+    keywords: [
+        'développeur',
+        'ingénieur',
+        'portfolio',
+        'projets',
+        'compétences',
+        'web',
+        'logiciel',
+        'freelance',
+    ],
+    authors: [{ name: 'Christophe EKOBENA' }],
 };
 
 export const viewport = {

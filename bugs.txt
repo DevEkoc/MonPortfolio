@@ -1,12 +1,12 @@
-Cannot read properties of undefined (reading 'find')
+./src/app/page.tsx (9:21)
 
-src\app\page.tsx (17:13) @ Home
+Ecmascript file had an error
+   7 | import dynamic from 'next/dynamic';
+   8 |
+>  9 | const ContactForm = dynamic(() => import('@/components/ContactForm'), { ssr: false });
+     |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  10 |
+  11 | export default function Home() {
+  12 |     return (
 
-
-  15 |             <ProjectsSection />
-  16 |             <BlogSection />
-> 17 |             <ContactForm />
-     |             ^
-  18 |         </Layout>
-  19 |     );
-  20 | }
+`ssr: false` is not allowed with `next/dynamic` in Server Components. Please move it into a Client Component.

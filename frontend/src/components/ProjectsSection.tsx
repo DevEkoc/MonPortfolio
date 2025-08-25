@@ -60,7 +60,7 @@ const ProjectsSection = () => {
     };
 
     return (
-        <section id="projects" className="py-24 bg-gray-100 dark:bg-gray-900">
+        <section id="projects" className="py-16 bg-gray-100 dark:bg-gray-900">
             <Container>
                 <motion.div {...animationControls} variants={staggerContainer}>
                     <motion.div

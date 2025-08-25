@@ -13,47 +13,57 @@ import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
 // Les données restent les mêmes...
 const educationData = [
     {
-        degree: "Diplôme d'Ingénieur en Informatique",
-        institution: 'École Nationale Supérieure Polytechnique de Douala',
-        date: '2017 - 2022',
+        degree: 'Ingénieur des Travaux en Génie Informatique - option Génie Logiciel',
+        institution: 'Institut Universitaire Siantou, Yaoundé',
+        date: '2024 - 2025',
     },
     {
-        degree: 'Baccalauréat Scientifique',
-        institution: 'Lycée de Makepe',
-        date: '2017',
+        degree: "Bac + 2 en Gestion des Systèmes d'Information",
+        institution:
+            'Institut Universitaire Catholique Sainte Thérèse de Yaoundé (INUCASTY)',
+        date: '2020 - 2022',
+    },
+    {
+        degree: 'Baccalauréat',
+        institution: 'Lycée Bilingue de Mendong',
+        date: '2020',
     },
 ];
 
 const experienceData = [
     {
         title: 'Développeur Full-Stack',
-        company: 'Startup Vision Inc.',
-        date: '2022 - Présent',
-        location: 'Paris, France',
+        company: 'Freelance',
+        date: 'Mars 2025 - Présent',
+        location: 'Yaoundé, Cameroun',
         description: [
-            'Conception et développement d’une plateforme SaaS avec Next.js, Django et PostgreSQL.',
-            'Mise en place de l’intégration et du déploiement continus (CI/CD) sur AWS.',
-            'Collaboration avec les équipes produit pour définir les nouvelles fonctionnalités.',
+            "Conception et développement d'applications web et mobile sur mesure, de la base de données au déploiement.",
+            'Gestion de projets de A à Z : recueil des besoins, analyse, spécifications techniques et suivi du développement.',
+            'Utilisation de technologies variées (HTML, CSS, JavaScript, React, Next.JS, Python/Django, Java, C#) pour des solutions robustes et évolutives.',
+            'Collaboration avec les clients pour adapter les solutions à leurs besoins spécifiques.',
         ],
     },
     {
-        title: 'Développeur Frontend (Stage)',
-        company: 'Creative Web Agency',
-        date: '2021',
-        location: 'Lille, France',
+        title: 'Responsable Développement',
+        company: 'Global Corporation Group SARL',
+        date: 'Novembre 2024 - Février 2025',
+        location: 'Yaoundé, Cameroun',
         description: [
-            "Intégration d'interfaces utilisateur complexes et responsives avec React et TypeScript.",
-            'Optimisation des performances et du SEO pour des sites clients à fort trafic.',
+            'Refonte partielle du site web, améliorant l’expérience utilisateur (+40% de trafic)',
+            'Étude du système existant de gestion des rendez-vous et stockage des données',
+            'Optimisation de la base de données MySQL, réduisant le temps de traitement des données de 30%',
+            "Conception et développement d'une application web de gestion des parcours d'immigration",
         ],
     },
     {
-        title: 'Projet Académique Noteworthy',
-        company: 'Projet Universitaire',
-        date: '2020',
-        location: 'Douala, Cameroun',
+        title: 'Développeur Backend (Stage)',
+        company: 'e-ROBOT Entreprise',
+        date: 'Juin - Octobre 2021',
+        location: 'Yaoundé, Cameroun',
         description: [
-            "Développement d'une application mobile de gestion de notes avec React Native.",
-            'Création d’une API RESTful avec Node.js et Express pour la synchronisation des données.',
+            'Développement de solutions web avec tests unitaires et validation des fonctionnalités avant mise en production',
+            'Gestion de projets de communication digitale.',
+            'Relations clients et coordination des livraisons de services.',
         ],
     },
 ];
@@ -65,7 +75,7 @@ const AboutSection = () => {
     return (
         <motion.section
             id="about"
-            className="py-24 bg-gray-50 dark:bg-gray-900"
+            className="py-16 bg-gray-50 dark:bg-gray-900"
             {...animationControls} // Application des contrôles d'animation
             variants={staggerContainer}
         >
@@ -125,20 +135,22 @@ const AboutSection = () => {
                     </motion.div>
 
                     {/* Colonne de Droite: Bio & Expérience */}
-                    <motion.div
-                        variants={fadeInUp}
-                        className="lg:col-span-3"
-                    >
+                    <motion.div variants={fadeInUp} className="lg:col-span-3">
                         {/* Bio */}
                         <div className="mb-12">
                             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                                Passionné par la création de solutions logicielles
-                                élégantes et performantes, je possède plusieurs
-                                années d&apos;expérience dans le développement
-                                d&apos;applications web complètes. Mon parcours
-                                m&apos;a permis de maîtriser à la fois les
-                                technologies frontend et backend, me permettant de
-                                transformer une idée en un produit robuste.
+                                Passionné par l’informatique depuis le lycée,
+                                mon parcours académique en génie logiciel et mes
+                                expériences professionnelles m’ont permis
+                                d’explorer un large éventail de technologies et
+                                de renforcer mon expertise en développement.
+                                Grâce à mes compétences en analyse et en
+                                conception de systèmes d’information, je conçois
+                                des solutions adaptées, innovantes et orientées
+                                résultats. Polyvalent en tant que développeur
+                                full-stack, je me distingue particulièrement
+                                dans le backend, où je conçois des architectures
+                                robustes et performantes
                             </p>
                         </div>
 
@@ -175,9 +187,12 @@ const AboutSection = () => {
                 </div>
 
                 {/* Ligne bouton CV */}
-                <motion.div variants={fadeInUp} className="mt-16 flex justify-center">
+                <motion.div
+                    variants={fadeInUp}
+                    className="mt-16 flex justify-center"
+                >
                     <a
-                        href="/cv.pdf"
+                        href="/docs/Curriculum-vitae-Christophe EKOBENA.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-x-2 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
