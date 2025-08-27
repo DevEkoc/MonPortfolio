@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getBlogTags } from '@/lib/blogApi';
 import { Tag } from '@/types/blog';
-import { Search } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 
 interface BlogFiltersProps {
     selectedTag: string | null;
@@ -18,6 +18,8 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
 }) => {
     const [tags, setTags] = useState<Tag[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const fetchTags = async () => {
@@ -41,11 +43,35 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
         };
     }, [searchQuery, onSearchChange]);
 
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target as Node)
+            ) {
+                setIsDropdownOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     const baseClasses =
         'px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-200';
     const activeClasses = 'bg-primary-600 text-white shadow-md';
     const inactiveClasses =
         'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700';
+
+    const handleTagSelect = (tagName: string | null) => {
+        onSelectTag(tagName);
+        setIsDropdownOpen(false);
+    };
+
+    const selectedTagName =
+        tags.find(t => t.name === selectedTag)?.name || 'Catégories';
 
     return (
         <div className="mb-12">
@@ -63,20 +89,52 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
             </div>
             <div className="flex flex-wrap justify-center gap-3">
                 <button
-                    onClick={() => onSelectTag(null)}
-                    className={`${baseClasses} ${!selectedTag ? activeClasses : inactiveClasses}`}
+                    onClick={() => handleTagSelect(null)}
+                    className={`${baseClasses} ${
+                        !selectedTag ? activeClasses : inactiveClasses
+                    }`}
                 >
                     Tous les articles
                 </button>
-                {tags.map(tag => (
+
+                <div className="relative" ref={dropdownRef}>
                     <button
-                        key={tag.id}
-                        onClick={() => onSelectTag(tag.name)}
-                        className={`${baseClasses} ${selectedTag === tag.name ? activeClasses : inactiveClasses}`}
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className={`${baseClasses} ${
+                            selectedTag ? activeClasses : inactiveClasses
+                        } flex items-center gap-2`}
                     >
-                        {tag.name}
+                        {selectedTagName}
+                        <ChevronDown
+                            size={16}
+                            className={`transition-transform duration-200 ${
+                                isDropdownOpen ? 'rotate-180' : ''
+                            }`}
+                        />
                     </button>
-                ))}
+
+                    {isDropdownOpen && (
+                        <div className="absolute z-10 mt-2 w-56 origin-top-right rounded-md bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                            <div
+                                className="py-1"
+                                role="menu"
+                                aria-orientation="vertical"
+                                aria-labelledby="options-menu"
+                            >
+                                {tags.map(tag => (
+                                    <button
+                                        key={tag.id}
+                                        onClick={() => handleTagSelect(tag.name)}
+                                        className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                                        role="menuitem"
+                                    >
+                                        {tag.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

@@ -1,0 +1,126 @@
+# Charte Graphique - Portfolio Christophe EKOBENA
+
+Ce document décrit l'ensemble des règles et des éléments visuels qui définissent l'identité graphique du site.
+
+## 1. Couleurs
+
+La palette est construite autour de trois axes : des bleus profonds pour l'identité principale, des gris neutres pour le fond et le texte, et des accents jaunes/orangés pour attirer l'attention.
+
+### 1.1. Palettes de couleurs (Tailwind CSS)
+
+-   **Couleur Primaire (Primary - Bleus) :**
+    -   `50`: #eff6ff
+    -   `100`: #dbeafe
+    -   `200`: #bfdbfe
+    -   `300`: #93c5fd
+    -   `400`: #60a5fa
+    -   `500`: #3b82f6 (Utilisation fréquente pour les focus et éléments interactifs)
+    -   `600`: #2563eb (Couleur principale pour les boutons et liens actifs)
+    -   `700`: #1d4ed8
+    -   `800`: #1e40af
+    -   `900`: #1e3a8a
+    -   `950`: #172554
+
+-   **Couleur Neutre (Gray - Gris) :**
+    -   `50`: #f9fafb (Fond des sections en mode clair)
+    -   `100`: #f3f4f6
+    -   `200`: #e5e7eb
+    -   `300`: #d1d5db
+    -   `400`: #9ca3af (Texte secondaire)
+    -   `500`: #6b7280
+    -   `600`: #4b5563
+    -   `700`: #374151
+    -   `800`: #1f2937 (Fond des cartes en mode sombre)
+    -   `900`: #111827 (Fond des sections en mode sombre)
+    -   `950`: #030712 (Couleur de fond principale du body en mode sombre)
+
+-   **Couleur d'Accent (Accent - Jaune/Orangé) :**
+    -   `50`: #fefce8
+    -   `100`: #fef9c3 (Fond des badges/tags)
+    -   `200`: #fef08a
+    -   `300`: #fde047
+    -   `400`: #facc15
+    -   `500`: #eab308
+    -   `600`: #ca8a04
+    -   `700`: #a16207
+    -   `800`: #854d0e
+    -   `900`: #713f12
+    -   `950`: #422006
+
+### 1.2. Dégradés
+
+-   **Titre Principal (Hero) et Logo :** Dégradé linéaire de `primary-500` (bleu) vers `orange-500`.
+-   **Arrière-plan du Hero (subtil) :**
+    -   Mode Clair : `gray-50` → `gray-100`
+    -   Mode Sombre : `gray-950` → `gray-900`
+-   **Halo de l'image (section "À propos") :** Dégradé de `primary-500` à `orange-500` avec un effet de flou (`blur-xl`).
+
+### 1.3. Thèmes (Clair / Sombre)
+
+-   **Mode Clair (par défaut) :**
+    -   Fond : `bg-white` ou `bg-gray-50`.
+    -   Texte : `text-gray-900` (principal), `text-gray-600` (secondaire).
+-   **Mode Sombre (`dark:`) :**
+    -   Fond : `dark:bg-gray-950` ou `dark:bg-gray-900`.
+    -   Texte : `dark:text-gray-100` (principal), `dark:text-gray-300` (secondaire).
+-   **Bordures :** `border-gray-200` en clair, `dark:border-gray-800` en sombre.
+
+## 2. Typographie
+
+### 2.1. Polices de caractères
+
+-   **Police Sans-Serif (principale) :** `Geist` (variable `--font-geist-sans`). Utilisée pour le corps du texte, les titres et la navigation.
+-   **Police Mono (secondaire) :** `Geist Mono` (variable `--font-geist-mono`). Utilisée pour les extraits de code ou les éléments techniques.
+-   **Style général :** `antialiased` pour un rendu plus lisse.
+
+### 2.2. Tailles et Hiérarchie
+
+La typographie est responsive et s'adapte aux différentes tailles d'écran.
+
+-   **Titre Principal (H1 - Hero) :** `text-4xl` → `md:text-6xl` → `lg:text-7xl`, `font-bold`.
+-   **Titres de Section (H2) :** `text-4xl` → `sm:text-5xl`, `font-bold`, `tracking-tight`.
+-   **Titres de Cartes (H3) :** `text-2xl`, `font-bold`.
+-   **Texte de corps :** `text-lg` ou `text-xl` pour une lisibilité accrue.
+-   **Texte secondaire / légendes :** `text-sm`.
+
+## 3. Layout et Espacement
+
+-   **Container Principal :** Le contenu est centré dans un conteneur de `max-w-7xl` avec des paddings responsives (`px-4 sm:px-6 lg:px-8`).
+-   **Grilles :** Utilisation intensive des grilles Tailwind CSS pour les mises en page responsives (ex: 2 ou 3 colonnes pour les compétences et les projets).
+-   **Espacement :** Utilisation cohérente de l'échelle de spacing de Tailwind (multiples de 4). Les sections ont un large padding vertical (`py-16` ou `py-20`) pour une bonne aération.
+
+## 4. Composants et Éléments d'Interface
+
+-   **Boutons :**
+    -   `.btn-primary`: Fond `primary-600`, texte blanc.
+    -   `.btn-secondary`: Fond `gray-100` (`dark:bg-gray-800`), texte sombre.
+    -   Tous les boutons ont des transitions (`transition-all duration-200`), des états `hover` et `focus` (anneau `primary-500`) bien définis.
+
+-   **Cartes (Cards) :**
+    -   Style de base : `rounded-xl`, `shadow-sm`, `border`.
+    -   Fond : `bg-white` (`dark:bg-gray-900` ou `dark:bg-gray-800`).
+    -   Interaction : Effet d'ombre et d'échelle au survol (`hover:shadow-xl`, `hover:scale-1.05`).
+
+-   **Formulaires :**
+    -   Champs : `rounded-md`, `shadow-sm`, bordure `border-gray-300` (`dark:border-gray-600`).
+    -   Focus : Anneau de couleur `primary-500`.
+
+-   **Navigation (Navbar) :**
+    -   Sticky en haut de page.
+    -   Arrière-plan translucide avec effet de flou (`bg-white/80 backdrop-blur-md`).
+
+## 5. Animations et Micro-interactions
+
+Les animations sont gérées avec **Framer Motion** et sont conçues pour être fluides et discrètes.
+
+-   **Principes :**
+    -   Les animations d'entrée se déclenchent au défilement (`whileInView`, `useInViewAnimation`).
+    -   Utilisation de l'échelonnement (`staggerChildren`) pour animer les listes d'éléments les uns après les autres.
+
+-   **Animations communes :**
+    -   `fadeInUp`: Apparition en fondu combinée à une légère translation vers le haut.
+    -   `scale` et `y`: Effet de grossissement et de soulèvement au survol des cartes.
+
+-   **Transitions :**
+    -   Les transitions de couleur sont rapides (`duration-200`).
+    -   Les animations de transformation utilisent des physiques de type `spring` pour un effet plus naturel.

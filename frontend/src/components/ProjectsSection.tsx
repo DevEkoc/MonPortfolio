@@ -71,8 +71,8 @@ const ProjectsSection = () => {
                             Mes Projets
                         </h2>
                         <p className="text-lg text-gray-600 dark:text-gray-300 mt-4 max-w-3xl mx-auto">
-                            Voici une sélection de projets qui illustrent mon
-                            parcours et mes compétences.
+                            Voici une sélection de projets personnels qui
+                            illustrent mon parcours et mes compétences.
                         </p>
                     </motion.div>
 
