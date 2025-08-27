@@ -22,7 +22,7 @@ const ProjectsSection = () => {
     const [filters, setFilters] = useState<{ [key: string]: string }>({});
     const [displayLimit, setDisplayLimit] = useState(INITIAL_DISPLAY_LIMIT);
 
-    const animationControls = useInViewAnimation(true, 0.1);
+    const animationControls = useInViewAnimation(false, 0.1);
 
     const fetchProjects = useCallback(async () => {
         setIsLoading(true);

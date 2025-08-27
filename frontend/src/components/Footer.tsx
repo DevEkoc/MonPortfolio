@@ -3,7 +3,13 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import Container from './Container';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import {
+    FaGithub,
+    FaLinkedin,
+    FaTwitter,
+    FaFacebook,
+    FaInstagram,
+} from 'react-icons/fa';
 
 const socialLinks = [
     {
@@ -21,6 +27,16 @@ const socialLinks = [
         href: 'https://twitter.com/Chris_Ekobena',
         icon: FaTwitter,
     },
+    {
+        name: 'Facebook',
+        href: 'https://facebook.com',
+        icon: FaFacebook,
+    },
+    {
+        name: 'Instagram',
+        href: 'https://instagram.com',
+        icon: FaInstagram,
+    },
 ];
 
 const navLinks = [
@@ -32,51 +48,70 @@ const navLinks = [
 
 export default function Footer() {
     return (
-        <footer className="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <footer className="bg-gray-50 dark:bg-gray-900 border-t-2 border-gray-200 dark:border-gray-700">
             <Container>
-                <div className="py-16 flex flex-col items-center justify-center text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                        Christophe EKOBENA
-                    </h3>
-                    <p className="text-gray-600 dark:text-gray-400 mt-2 mb-6 max-w-md">
-                        Développeur passionné, je transforme les idées en expériences web modernes et performantes.
-                    </p>
+                <div className="py-12">
+                    {/* Row 1: Logo/Desc and Nav */}
+                    <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
+                        {/* Column 1: Logo and Description (4/5 width) */}
+                        <div className="md:col-span-4 text-center md:text-left">
+                            <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400">
+                                DevEkoc.com
+                            </span>
+                            <p className="text-gray-600 dark:text-gray-400 mt-2 max-w-md mx-auto md:mx-0">
+                                Ce site a été conçu et réalisé par{' '}
+                                <b>Christophe Cédric EKOBENA</b> aka{' '}
+                                <i>DevEkoc</i>. Je suis Ingénieur en Génie
+                                Informatique, spécialisé dans le Génie Logiciel.
+                                Ma mission est de créer des expériences
+                                numériques modernes et efficaces pour les
+                                entreprises et les paticuliers. Vous pouvez me
+                                contacter à travers un des liens ci-dessous :
+                            </p>
+                        </div>
 
-                    <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 mb-8">
-                        {navLinks.map(link => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </nav>
+                        {/* Column 2: Navigation (1/5 width) */}
+                        <nav className="md:col-span-1 flex flex-col items-center md:items-start space-y-2">
+                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-2">
+                                Navigation
+                            </h4>
+                            {navLinks.map(link => (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    className="text-gray-600 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors font-medium"
+                                >
+                                    {link.name}
+                                </Link>
+                            ))}
+                        </nav>
+                    </div>
 
-                    <div className="flex space-x-6">
+                    {/* Row 2: Social Icons (much less height) */}
+                    <div className="flex justify-center space-x-8 my-6">
                         {socialLinks.map(social => (
                             <motion.a
                                 key={social.name}
                                 href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                                className="text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
                                 whileHover={{ scale: 1.2, y: -2 }}
                                 whileTap={{ scale: 0.9 }}
                                 aria-label={social.name}
                             >
-                                <social.icon className="w-6 h-6" />
+                                <social.icon className="w-8 h-8" />
                             </motion.a>
                         ))}
                     </div>
-                </div>
 
-                <div className="py-6 border-t border-gray-200 dark:border-gray-800">
-                    <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
-                        © {new Date().getFullYear()} Christophe EKOBENA. Tous
-                        droits réservés.
-                    </p>
+                    {/* Row 3: Copyright (much less height) */}
+                    <div className="pt-4 mt-6 border-t border-gray-200 dark:border-gray-800">
+                        <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
+                            © {new Date().getFullYear()} Christophe EKOBENA.
+                            Tous droits réservés.
+                        </p>
+                    </div>
                 </div>
             </Container>
         </footer>

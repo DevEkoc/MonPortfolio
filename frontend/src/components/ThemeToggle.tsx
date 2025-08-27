@@ -8,7 +8,7 @@ export default function ThemeToggle() {
 
     if (!mounted || !theme) {
         return (
-            <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-700 animate-pulse" />
+            <div className="w-10 h-10 rounded-lg bg-gray-200 dark:bg-gray-800 animate-pulse" />
         );
     }
 

@@ -29,7 +29,7 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link
                         href="/#home"
-                        className="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                        className="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
                     >
                         {/* <Image
                             src="/logo.svg"
@@ -49,7 +49,7 @@ export default function Navbar() {
                             <Link
                                 key={item.name}
                                 href={item.href}
-                                className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors font-medium"
+                                className="text-gray-700 dark:text-gray-300 hover:text-accent-600 dark:hover:text-accent-400 transition-colors font-medium"
                             >
                                 {item.name}
                             </Link>

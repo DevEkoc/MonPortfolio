@@ -16,7 +16,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             whileHover={{ scale: 1.05, y: -10 }}
-            className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer"
+            className="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 overflow-hidden cursor-pointer"
         >
             {project.image && (
                 <div className="relative h-56 w-full">
@@ -51,7 +51,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                             href={project.demo_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
+                            className="text-gray-500 hover:text-accent-500 dark:text-gray-400 dark:hover:text-accent-400 transition-colors"
                         >
                             <FaExternalLinkAlt size={24} />
                         </a>
@@ -61,7 +61,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                             href={project.code_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-primary-500 dark:text-gray-400 dark:hover:text-primary-400 transition-colors"
+                            className="text-gray-500 hover:text-accent-500 dark:text-gray-400 dark:hover:text-accent-400 transition-colors"
                         >
                             <FaGithub size={24} />
                         </a>

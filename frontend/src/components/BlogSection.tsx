@@ -23,7 +23,7 @@ const BlogSection: React.FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [hasNextPage, setHasNextPage] = useState(false);
 
-    const animationControls = useInViewAnimation(true, 0.1);
+    const animationControls = useInViewAnimation(false, 0.1);
 
     const fetchPosts = useCallback(
         async (page: number, tag: string | null, search: string) => {

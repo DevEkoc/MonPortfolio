@@ -70,7 +70,7 @@ const experienceData = [
 
 const AboutSection = () => {
     // Utilisation du nouveau hook centralisé
-    const animationControls = useInViewAnimation(true, 0.1);
+    const animationControls = useInViewAnimation(false, 0.1);
 
     return (
         <motion.section
@@ -163,7 +163,7 @@ const AboutSection = () => {
                             <div className="relative border-l-2 border-primary-200 dark:border-primary-800 pl-8 space-y-12">
                                 {experienceData.map((exp, index) => (
                                     <div key={index} className="relative">
-                                        <div className="absolute -left-[42px] top-1 h-4 w-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-800"></div>
+                                        <div className="absolute -left-[42px] top-1 h-4 w-4 rounded-full bg-primary-500 border-4 border-white dark:border-gray-900"></div>
                                         <p className="text-sm font-medium text-primary-600 dark:text-primary-400">
                                             {exp.date}
                                         </p>

@@ -12,7 +12,7 @@ import Container from './Container';
 const SkillsSection = () => {
     const featuredSkills = skillsData.filter(s => s.featured);
     const otherSkills = skillsData.filter(s => !s.featured);
-    const animationControls = useInViewAnimation(true, 0.05);
+    const animationControls = useInViewAnimation(false, 0.05);
 
     return (
         <section id="skills" className="py-16 bg-gray-50 dark:bg-gray-900">

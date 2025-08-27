@@ -1,0 +1,19 @@
+fix(blog, frontend, deps): Amélioration du blog, correction de navigation et dépendances
+
+Ce commit apporte des améliorations significatives à l'application blog (backend) et corrige des problèmes de navigation et d'affichage dans le frontend.
+
+Backend - Application Blog:
+- Tests:
+  - Ajout de tests unitaires pour la logique de `published_at` dans la méthode `save` du modèle `Post` (`backend/blog/tests.py`).
+  - Correction d'un test de mise à jour (`test_update_post_staff_user`) en incluant `published_at` dans les données de la requête PATCH.
+- Seeding:
+  - Création d'une commande de gestion `seed_blog` (`backend/blog/management/commands/seed_blog.py`) pour générer 10 articles de blog factices.
+  - Résolution de l'erreur `ModuleNotFoundError: No module named 'faker'` en s'assurant de l'installation correcte des dépendances.
+- Dépendances:
+  - Correction de `backend/requirements.txt` en remplaçant `djangorestframework-taggit==1.5.0` par `django-taggit-api` (le paquet original n'existant pas sur PyPI).
+
+Frontend:
+- Blog Detail Page:
+  - Correction de l'erreur Next.js "params should be awaited" dans `src/app/blog/[slug]/page.tsx` en `await`ant `params` avant d'accéder à ses propriétés.
+- Navigation:
+  - Correction des liens de navigation dans `src/components/Navbar.tsx` en utilisant des chemins absolus (par exemple, `/#home` au lieu de `#home`) pour résoudre les problèmes de navigation depuis les pages de détail d'articles.

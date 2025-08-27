@@ -104,7 +104,7 @@ export default function Hero() {
     return (
         <section
             id="home"
-            className="min-h-screen flex flex-col items-center justify-center bg-gray-50 dark:bg-gray-900 py-20 overflow-hidden"
+            className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-950 dark:to-gray-900 py-20 overflow-hidden"
         >
             <Container>
                 {/* Le contenu principal s'anime au chargement */}
