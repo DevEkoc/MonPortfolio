@@ -1,4 +1,4 @@
-import { PagedResponse } from './api';
+import { PaginatedResponse } from './api';
 
 export interface Tag {
     id: number;
@@ -19,4 +19,4 @@ export interface Post {
     updated_at: string;
 }
 
-export type PagedPostsResponse = PagedResponse<Post>;
+export type PagedPostsResponse = PaginatedResponse<Post>;

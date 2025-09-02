@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Technology } from '@/types/project';
-import { getTechnologies } from '@/lib/projectsApi';
+import { Technology, technologies as staticTechnologies } from '@/data/technologies';
 
 interface ProjectFiltersProps {
     onFilterChange: (filter: { type: string; value: string }) => void;
@@ -21,12 +20,7 @@ const ProjectFilters = ({
     useEffect(() => {
         // éviter l'hydratation côté serveur
         setMounted(true);
-
-        const fetchTech = async () => {
-            const techData = await getTechnologies();
-            setTechnologies(techData);
-        };
-        fetchTech();
+        setTechnologies(staticTechnologies);
     }, []);
 
     const handleTechChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

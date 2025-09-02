@@ -1,6 +1,5 @@
 import { MetadataRoute } from 'next';
-
-// TODO: Importer les fonctions de l'API (ex: getPosts) quand leur emplacement sera connu.
+import { getPublishedPosts } from '@/data/posts';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = 'https://www.devekoc.com';
@@ -10,40 +9,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         {
             url: baseUrl,
             lastModified: new Date(),
-            changeFrequency: 'monthly',
+            changeFrequency: 'monthly' as const,
             priority: 1,
         },
         {
             url: `${baseUrl}/blog`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
+            changeFrequency: 'weekly' as const,
             priority: 0.8,
         },
         {
             url: `${baseUrl}/experience-education`,
             lastModified: new Date(),
-            changeFrequency: 'yearly',
+            changeFrequency: 'yearly' as const,
             priority: 0.5,
         },
     ];
 
     // --- Routes Dynamiques (Blog Posts) ---
-    // Décommentez et adaptez ce bloc une fois que getPosts() est disponible
-    /*
     try {
-        const posts = await getPosts({ limit: 1000 }); // Assurez-vous que votre API peut retourner tous les posts
-        const postUrls = posts.results.map(post => ({
+        // Récupération des posts depuis les données statiques
+        const posts = getPublishedPosts();
+        const postUrls = posts.map((post) => ({
             url: `${baseUrl}/blog/${post.slug}`,
-            lastModified: new Date(post.updated_at),
-            changeFrequency: 'yearly',
+            lastModified: new Date(post.updatedAt),
+            changeFrequency: 'yearly' as const,
             priority: 0.7,
         }));
+
         return [...staticRoutes, ...postUrls];
     } catch (error) {
-        console.error("Impossible de générer les routes dynamiques pour le sitemap:", error);
+        console.error(
+            "Erreur lors de la génération des routes du blog pour le sitemap:",
+            error
+        );
+        // En cas d'erreur, on retourne au moins les routes statiques
         return staticRoutes;
     }
-    */
-
-    return staticRoutes;
 }

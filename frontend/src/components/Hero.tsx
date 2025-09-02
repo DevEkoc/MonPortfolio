@@ -111,26 +111,32 @@ export default function Hero() {
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-center"
                     variants={staggerContainer}
-                    initial="hidden"
-                    animate="visible" // Animation au montage
+                    initial={false} // Pas d'animation initiale pour améliorer le LCP
+                    animate="visible"
                 >
                     {/* Colonne de Gauche: Photo */}
                     <motion.div
                         variants={fadeInUp}
+                        initial={false} // Charge immédiatement l'image critique
                         className="md:col-span-1 flex justify-center"
                     >
                         <Image
-                            src="/images/eko1.jpg"
+                            src="/images/eko1.webp"
                             alt="Photo de Christophe Cédric EKOBENA OMGBA"
                             width={320}
                             height={320}
+                            priority
+                            sizes="(max-width: 768px) 256px, 320px"
                             className="w-64 h-64 lg:w-80 lg:h-80 rounded-full object-cover border-8 border-white dark:border-gray-800 shadow-2xl"
+                            placeholder="blur"
+                            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAUABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAABQAG/8QAIxAAAQQBAQgDAAAAAAAAAAAAAQACAwQRBRIhMUFRcfCh4f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECAxEhkf/aAAwDAQACEQMRAD8A18Y3OyCOSzQfRo4YwtQDutJafcQqfLy0dgKmS7WGjM3c65Gux8j4JE73O9lJjbXxhjZJYgANupE1g9dI8k3lj8mLJa91pAWOYOKSnktOWj4TLcBHOqNrVUgQCY+IgFqWanUoLr6mVznOVjfZlUCRZsNLfhbNKlUSp4HU3A/YJoaODnPUkUrZrfT9KxFp+0rUUvFNgUd3LdKW1S+k5Nt/UkKWZGNKrQ3+jU4jw/pKlJK4T+vgKD8CQTAFF60CtSFBSSW1BO2s/9k="
                         />
                     </motion.div>
 
                     {/* Colonne de Droite: Contenu Texte */}
                     <motion.div
                         variants={staggerContainer}
+                        initial={false} // Affiche le texte immédiatement
                         className="md:col-span-2 text-center md:text-left"
                     >
                         <motion.h2

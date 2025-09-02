@@ -1,15 +1,11 @@
 import { SkillCategory } from '@/types/skills';
-import { SkillCategory } from '@/types/skills';
 import {
     FaReact,
-    FaNodeJs,
     FaPython,
     FaDocker,
     FaGitAlt,
     FaFigma,
     FaJava,
-    FaHtml5,
-    FaCss3Alt,
     FaGithub,
     FaLinux,
     FaShieldAlt,
@@ -19,7 +15,6 @@ import {
     SiNextdotjs,
     SiDjango,
     SiPostgresql,
-    SiJavascript,
     SiTailwindcss,
     SiAdobephotoshop,
     SiCanva,

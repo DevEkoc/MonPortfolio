@@ -1,18 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Post } from '@/types/blog';
+import { BlogPost } from '@/data/posts';
 import { FiCalendar, FiTag } from 'react-icons/fi';
 
 import { fadeInUp } from '@/lib/animations';
 
 interface BlogCardProps {
-    post: Post;
+    post: BlogPost;
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
-    const publishedDate = post.published_at
-        ? new Date(post.published_at).toLocaleDateString('fr-FR', {
+    const publishedDate = post.publishedAt
+        ? new Date(post.publishedAt).toLocaleDateString('fr-FR', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

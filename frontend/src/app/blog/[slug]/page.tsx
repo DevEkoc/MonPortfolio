@@ -1,4 +1,4 @@
-import { getPostBySlug } from '@/lib/blogApi';
+import { getPostBySlug } from '@/data/posts';
 import { notFound } from 'next/navigation';
 import Container from '@/components/Container';
 import Layout from '@/components/Layout';
@@ -6,7 +6,7 @@ import { FiCalendar, FiTag } from 'react-icons/fi';
 import type { Metadata } from 'next';
 
 type BlogPostPageProps = {
-    params: { slug: string };
+    params: Promise<{ slug: string }>;
 };
 
 // Generate metadata for SEO
@@ -15,7 +15,15 @@ export async function generateMetadata({
 }: BlogPostPageProps): Promise<Metadata> {
     try {
         const resolvedParams = await params;
-        const post = await getPostBySlug(resolvedParams.slug);
+        const post = getPostBySlug(resolvedParams.slug);
+        
+        if (!post) {
+            return {
+                title: 'Article non trouvé | Blog',
+                description: 'Cet article n\'existe pas ou n\'est plus disponible.',
+            };
+        }
+        
         return {
             title: `${post.title} | Blog`,
             description: post.excerpt,
@@ -23,7 +31,7 @@ export async function generateMetadata({
                 title: post.title,
                 description: post.excerpt || '',
                 type: 'article',
-                publishedTime: post.published_at || undefined,
+                publishedTime: post.publishedAt || undefined,
                 tags: post.tags,
             },
         };
@@ -37,17 +45,15 @@ export async function generateMetadata({
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-    let post;
-    try {
-        const resolvedParams = await params;
-        post = await getPostBySlug(resolvedParams.slug);
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (_error) {
+    const resolvedParams = await params;
+    const post = getPostBySlug(resolvedParams.slug);
+    
+    if (!post) {
         notFound();
     }
 
-    const publishedDate = post.published_at
-        ? new Date(post.published_at).toLocaleString('fr-FR', {
+    const publishedDate = post.publishedAt
+        ? new Date(post.publishedAt).toLocaleString('fr-FR', {
               year: 'numeric',
               month: 'long',
               day: 'numeric',

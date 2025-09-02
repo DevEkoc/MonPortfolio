@@ -99,7 +99,7 @@ const AboutSection = () => {
                         <div className="relative w-full max-w-xs mx-auto">
                             <div className="absolute inset-0 bg-gradient-to-r from-primary-500 to-orange-500 rounded-full -inset-4 blur-xl opacity-30"></div>
                             <Image
-                                src="/images/eko.jpg"
+                                src="/images/eko.webp"
                                 alt="Photo de Christophe Cédric EKOBENA OMGBA"
                                 width={400}
                                 height={400}

@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { getBlogTags } from '@/lib/blogApi';
-import { Tag } from '@/types/blog';
+import { getAllTags } from '@/data/posts';
 import { Search, ChevronDown } from 'lucide-react';
 
 interface BlogFiltersProps {
@@ -16,21 +15,15 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
     onSelectTag,
     onSearchChange,
 }) => {
-    const [tags, setTags] = useState<Tag[]>([]);
+    const [tags, setTags] = useState<{name: string}[]>([]);
     const [searchQuery, setSearchQuery] = useState('');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const fetchTags = async () => {
-            try {
-                const fetchedTags = await getBlogTags();
-                setTags(fetchedTags);
-            } catch (error) {
-                console.error('Failed to fetch blog tags', error);
-            }
-        };
-        fetchTags();
+        const tagStrings = getAllTags();
+        const tagObjects = tagStrings.map(name => ({ name }));
+        setTags(tagObjects);
     }, []);
 
     useEffect(() => {
@@ -123,7 +116,7 @@ const BlogFilters: React.FC<BlogFiltersProps> = ({
                             >
                                 {tags.map(tag => (
                                     <button
-                                        key={tag.id}
+                                        key={tag.name}
                                         onClick={() => handleTagSelect(tag.name)}
                                         className="w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                                         role="menuitem"

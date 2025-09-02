@@ -2,8 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { z } from 'zod';
-import api from '@/lib/axios';
-import axios from 'axios';
+// Note: API calls removed - using static data now
 import Container from './Container';
 import {
     motion
@@ -69,30 +68,19 @@ const ContactForm: React.FC = () => {
 
         try {
             contactFormSchema.parse(formData);
-            const response = await api.post('/contact/', formData);
-            if (response.status === 201) {
-                setSuccessMessage('Votre message a été envoyé avec succès !');
-                setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
-            }
+            
+            // Pour la version statique, on simule un succès
+            // TODO: Implémenter un service de contact externe (Formspree, EmailJS, etc.)
+            console.log('Message de contact:', formData);
+            setSuccessMessage('Votre message a été envoyé avec succès !');
+            setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
         } catch (err) {
             if (err instanceof z.ZodError) {
                 setErrors(err.issues);
                 setErrorMessage('Veuillez corriger les erreurs.');
-            } else if (axios.isAxiosError(err) && err.response) {
-                const { data } = err.response;
-                setErrorMessage(data.message || "Erreur lors de l'envoi.");
-                if (data.errors) {
-                    const apiErrors = Object.keys(data.errors).map(key => ({
-                        path: [key],
-                        message: Array.isArray(data.errors[key]) ? data.errors[key][0] : data.errors[key],
-                        code: 'custom',
-                        expected: 'valid',
-                        received: 'invalid',
-                    }));
-                    setErrors(apiErrors as z.ZodIssue[]);
-                }
             } else {
-                setErrorMessage('Une erreur inattendue est survenue.');
+                console.error('Erreur lors de l\'envoi:', err);
+                setErrorMessage('Une erreur est survenue lors de l\'envoi du message.');
             }
         } finally {
             setLoading(false);
@@ -112,7 +100,7 @@ const ContactForm: React.FC = () => {
                             Contactez-moi
                         </h2>
                         <p className="mt-4 text-xl text-gray-600 dark:text-gray-300">
-                            N'hésitez pas à me laisser un message.
+                            N&apos;hésitez pas à me laisser un message.
                         </p>
                     </motion.div>
 

@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { getPosts } from '@/lib/blogApi';
-import { Post } from '@/types/blog';
+import { getPublishedPosts, getPostsByTag } from '@/data/posts';
 import BlogCard from './BlogCard';
 import Container from './Container';
 import BlogFilters from './BlogFilters';
@@ -14,66 +13,46 @@ import {
 } from '@/lib/animations';
 
 const BlogSection: React.FC = () => {
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [loadingMore, setLoadingMore] = useState(false);
-    const [error, setError] = useState<string | null>(null);
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [searchQuery, setSearchQuery] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [hasNextPage, setHasNextPage] = useState(false);
+    const [displayLimit, setDisplayLimit] = useState(6);
 
     const animationControls = useInViewAnimation(false, 0.1);
 
-    const fetchPosts = useCallback(
-        async (page: number, tag: string | null, search: string) => {
-            if (page === 1) setLoading(true);
-            else setLoadingMore(true);
-
-            setError(null);
-
-            try {
-                const params: GetPostsParams = { page };
-                if (tag) params.tags__name = tag;
-                if (search) params.search = search;
-
-                const response = await getPosts(params);
-
-                setPosts(prevPosts =>
-                    page === 1
-                        ? response.results
-                        : [...prevPosts, ...response.results]
-                );
-                setHasNextPage(!!response.next);
-            } catch (err) {
-                setError('Impossible de charger les articles du blog.');
-                console.error(err);
-            } finally {
-                setLoading(false);
-                setLoadingMore(false);
-            }
-        },
-        []
-    );
-
-    useEffect(() => {
-        setCurrentPage(1);
-        fetchPosts(1, selectedTag, searchQuery);
-    }, [selectedTag, searchQuery, fetchPosts]);
+    // Récupération des articles depuis les données statiques
+    const posts = useMemo(() => {
+        let filteredPosts = getPublishedPosts();
+        
+        // Filtrer par tag si sélectionné
+        if (selectedTag) {
+            filteredPosts = getPostsByTag(selectedTag);
+        }
+        
+        // Filtrer par recherche textuelle
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            filteredPosts = filteredPosts.filter(post => 
+                post.title.toLowerCase().includes(query) ||
+                post.excerpt.toLowerCase().includes(query) ||
+                post.tags.some(tag => tag.toLowerCase().includes(query))
+            );
+        }
+        
+        return filteredPosts;
+    }, [selectedTag, searchQuery]);
 
     const handleSelectTag = (tag: string | null) => {
         setSelectedTag(tag);
+        setDisplayLimit(6); // Reset display limit when filtering
     };
 
     const handleSearchChange = (query: string) => {
         setSearchQuery(query);
+        setDisplayLimit(6); // Reset display limit when searching
     };
 
-    const handleLoadMore = () => {
-        const nextPage = currentPage + 1;
-        setCurrentPage(nextPage);
-        fetchPosts(nextPage, selectedTag, searchQuery);
-    };
+    const hasMorePosts = posts.length > displayLimit;
+    const displayedPosts = posts.slice(0, displayLimit);
 
     return (
         <section id="blog" className="py-16 bg-gray-50 dark:bg-gray-900">
@@ -100,54 +79,33 @@ const BlogSection: React.FC = () => {
                         />
                     </motion.div>
 
-                    {loading && (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
-                            {[...Array(3)].map((_, i) => (
-                                <div
-                                    key={i}
-                                    className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 animate-pulse"
-                                >
-                                    <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4 mb-4"></div>
-                                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full mb-2"></div>
-                                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6 mb-4"></div>
-                                    <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/3"></div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-
-                    {error && (
-                        <p className="text-center text-red-500">{error}</p>
-                    )}
-
-                    {!loading && posts.length === 0 && (
-                        <p className="text-center text-gray-500">
+                    {posts.length === 0 && (
+                        <p className="text-center text-gray-500 mt-8">
                             Aucun article trouvé pour le moment.
                         </p>
                     )}
 
-                    {!loading && posts.length > 0 && (
+                    {posts.length > 0 && (
                         <motion.div
-                            variants={staggerContainer} // Stagger for the cards themselves
+                            variants={staggerContainer}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
                         >
-                            {posts.map(post => (
+                            {displayedPosts.map(post => (
                                 <BlogCard key={post.id} post={post} />
                             ))}
                         </motion.div>
                     )}
 
-                    {hasNextPage && (
+                    {hasMorePosts && (
                         <motion.div
                             variants={fadeInUp}
                             className="text-center mt-12"
                         >
                             <button
-                                onClick={handleLoadMore}
-                                disabled={loadingMore}
-                                className="bg-primary-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-700 transition-colors duration-300 disabled:bg-gray-400"
+                                onClick={() => setDisplayLimit(prev => prev + 6)}
+                                className="bg-primary-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-700 transition-colors duration-300"
                             >
-                                {loadingMore ? 'Chargement...' : 'Charger plus'}
+                                Charger plus
                             </button>
                         </motion.div>
                     )}
@@ -158,9 +116,3 @@ const BlogSection: React.FC = () => {
 };
 
 export default BlogSection;
-
-type GetPostsParams = {
-    page?: number;
-    tags__name?: string;
-    search?: string;
-};

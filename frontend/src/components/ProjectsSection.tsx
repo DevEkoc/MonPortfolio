@@ -1,9 +1,8 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Project } from '@/types/project';
-import { getProjects } from '@/lib/projectsApi';
+import { getPublishedProjects, getProjectsByTechnology } from '@/data/projects';
 import ProjectCard from './ProjectCard';
 import ProjectFilters from './ProjectFilters';
 import Container from './Container';
@@ -16,47 +15,32 @@ import {
 const INITIAL_DISPLAY_LIMIT = 6;
 
 const ProjectsSection = () => {
-    const [projects, setProjects] = useState<Project[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [filters, setFilters] = useState<{ [key: string]: string }>({});
+    const [selectedTech, setSelectedTech] = useState<string>('');
     const [displayLimit, setDisplayLimit] = useState(INITIAL_DISPLAY_LIMIT);
 
     const animationControls = useInViewAnimation(false, 0.1);
 
-    const fetchProjects = useCallback(async () => {
-        setIsLoading(true);
-        setError(null);
-        try {
-            const params: { [key: string]: string } = { ...filters };
-            if (filters.tech) {
-                params.tech_stack__name = filters.tech;
-                delete params.tech;
-            }
-            const data = await getProjects(params);
-            setProjects(data.results);
-        } catch {
-            setError(
-                'Impossible de charger les projets. Veuillez réessayer plus tard.'
-            );
+    // Récupération des projets depuis les données statiques
+    const projects = useMemo(() => {
+        if (!selectedTech) {
+            return getPublishedProjects();
         }
-        setIsLoading(false);
-    }, [filters]);
+        return getProjectsByTechnology(selectedTech);
+    }, [selectedTech]);
 
-    useEffect(() => {
-        fetchProjects();
-    }, [fetchProjects]);
-
+    // Réinitialise la limite d'affichage lorsque les filtres changent
     useEffect(() => {
         setDisplayLimit(INITIAL_DISPLAY_LIMIT);
-    }, [filters]);
+    }, [selectedTech]);
 
     const handleFilterChange = (filter: { type: string; value: string }) => {
-        setFilters(prev => ({ ...prev, [filter.type]: filter.value }));
+        if (filter.type === 'tech') {
+            setSelectedTech(filter.value);
+        }
     };
 
     const handleClearFilters = () => {
-        setFilters({});
+        setSelectedTech('');
     };
 
     return (
@@ -80,18 +64,9 @@ const ProjectsSection = () => {
                         <ProjectFilters
                             onFilterChange={handleFilterChange}
                             onClearFilters={handleClearFilters}
-                            activeTech={filters.tech || ''}
+                            activeTech={selectedTech}
                         />
                     </motion.div>
-
-                    {isLoading && (
-                        <div className="text-center text-gray-500 dark:text-gray-400">
-                            Chargement des projets...
-                        </div>
-                    )}
-                    {error && (
-                        <div className="text-center text-red-500">{error}</div>
-                    )}
 
                     <motion.div
                         layout
@@ -99,20 +74,18 @@ const ProjectsSection = () => {
                         className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
                     >
                         <AnimatePresence>
-                            {!isLoading &&
-                                !error &&
-                                projects
-                                    .slice(0, displayLimit)
-                                    .map(project => (
-                                        <ProjectCard
-                                            key={project.id}
-                                            project={project}
-                                        />
-                                    ))}
+                            {projects
+                                .slice(0, displayLimit)
+                                .map(project => (
+                                    <ProjectCard
+                                        key={project.id}
+                                        project={project}
+                                    />
+                                ))}
                         </AnimatePresence>
                     </motion.div>
 
-                    {!isLoading && !error && projects.length === 0 && (
+                    {projects.length === 0 && (
                         <motion.div
                             variants={fadeInUp}
                             className="text-center text-gray-500 dark:text-gray-400 mt-8"
@@ -121,7 +94,7 @@ const ProjectsSection = () => {
                         </motion.div>
                     )}
 
-                    {!isLoading && !error && projects.length > displayLimit && (
+                    {projects.length > displayLimit && (
                         <motion.div
                             variants={fadeInUp}
                             className="text-center mt-8"

@@ -5,11 +5,15 @@ import './globals.css';
 const geistSans = Geist({
     variable: '--font-geist-sans',
     subsets: ['latin'],
+    display: 'swap',
+    preload: true,
 });
 
 const geistMono = Geist_Mono({
     variable: '--font-geist-mono',
     subsets: ['latin'],
+    display: 'swap',
+    preload: true,
 });
 
 export const metadata: Metadata = {
@@ -45,7 +49,7 @@ export const metadata: Metadata = {
         siteName: 'DevEkoc Portfolio',
         images: [
             {
-                url: '/images/eko.jpg', // Chemin vers l'image OG
+                url: '/images/eko.webp', // Chemin vers l'image OG
                 width: 800,
                 height: 600,
                 alt: 'Photo de Christophe Ekobena',
@@ -61,7 +65,7 @@ export const metadata: Metadata = {
         description:
             'Portfolio de Christophe Ekobena, développeur passionné.',
         creator: '@Chris_Ekobena',
-        images: ['/images/eko.jpg'],
+        images: ['/images/eko.webp'],
     },
 
     robots: {
@@ -89,6 +93,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="fr" className="scroll-smooth">
+            <head>
+                <link 
+                    rel="preload" 
+                    href="/images/eko1.webp" 
+                    as="image" 
+                    type="image/webp"
+                />
+            </head>
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >

@@ -1,4 +1,4 @@
-import { Project } from '@/types/project';
+import { Project } from '@/data/projects';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
@@ -23,8 +23,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     <Image
                         src={project.image}
                         alt={`Image du projet ${project.title}`}
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover"
+                        loading="lazy"
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyEkJYgqScMucn6nqfxBKNGPBKjYjgsb8rYIYwUVSZIxOjwMMADcvs/rDHZ/XpOw3CNySTgJ4CkYYdoHUgf6vKgShJJ8BHCS1cT4JGQHf5JGKwH4fJCNRLUIbTWfttc7sTImdtVkQfhIwRwKxeXFbFIvwAhc4NiIiIiIiIiIg9bxJJGiXPdpOdLUYuLzLw9Dqv3JZjJCg=="
                     />
                 </div>
             )}
@@ -36,19 +40,19 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     {project.summary}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech_stack.map(tech => (
+                    {project.techStack.map(tech => (
                         <span
-                            key={tech.id}
+                            key={tech}
                             className="bg-primary-100 text-primary-800 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-primary-900 dark:text-primary-300"
                         >
-                            {tech.name}
+                            {tech}
                         </span>
                     ))}
                 </div>
                 <div className="flex justify-end gap-4 mt-4">
-                    {project.demo_url && (
+                    {project.demoUrl && (
                         <a
-                            href={project.demo_url}
+                            href={project.demoUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-500 hover:text-accent-500 dark:text-gray-400 dark:hover:text-accent-400 transition-colors"
@@ -56,9 +60,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                             <FaExternalLinkAlt size={24} />
                         </a>
                     )}
-                    {project.code_url && (
+                    {project.codeUrl && (
                         <a
-                            href={project.code_url}
+                            href={project.codeUrl}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-gray-500 hover:text-accent-500 dark:text-gray-400 dark:hover:text-accent-400 transition-colors"
