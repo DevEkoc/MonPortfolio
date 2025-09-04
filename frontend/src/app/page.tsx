@@ -1,10 +1,9 @@
 import dynamic from 'next/dynamic';
 import Layout from '@/components/Layout';
-import Hero from '@/components/Hero';
-import AboutSection from '@/components/AboutSection'; // Retour à l'import direct pour Above-the-Fold
+import HeroOptimized from '@/components/HeroOptimized';
+import AboutSection from '@/components/AboutSection';
 
-// Lazy load des composants vraiment non critiques
-
+// Lazy loading optimisé pour réduire le TBT
 const SkillsSection = dynamic(() => import('@/components/SkillsSection'), {
     loading: () => <div className="h-96 animate-pulse bg-gray-100 dark:bg-gray-800" />
 });
@@ -24,7 +23,7 @@ const DynamicContactForm = dynamic(() => import('@/components/DynamicContactForm
 export default function Home() {
     return (
         <Layout>
-            <Hero />
+            <HeroOptimized />
             <AboutSection />
             <SkillsSection />
             <ProjectsSection />
