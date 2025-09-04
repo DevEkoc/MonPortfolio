@@ -126,7 +126,7 @@ export default function Footer() {
                     {/* Row 3: Copyright (much less height) */}
                     <div className="pt-4 mt-6 border-t border-gray-200 dark:border-gray-800">
                         <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
-                            © {new Date().getFullYear()} Christophe EKOBENA.
+                            © {new Date().getFullYear()} Christophe Cédric EKOBENA.
                             Tous droits réservés.
                         </p>
                     </div>
