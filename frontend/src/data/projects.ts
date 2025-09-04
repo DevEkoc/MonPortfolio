@@ -38,7 +38,7 @@ export const projects: Project[] = [
     "id": 2,
     "title": "Projet ALTARIS",
     "slug": "projet-altaris",
-    "summary": "ALTARIS est une de gestion des servants d’autel du Cameroun. Elle permet de centraliser les informations des servants depuis la paroisse jusqu’à la coordination nationale, chaque membre disposant d’un matricule unique et d’un QR Code pour accéder à sa page dédiée.",
+    "summary": "ALTARIS est une application de gestion des servants d’autel du Cameroun. Elle permet de centraliser les informations des servants depuis la paroisse jusqu’à la coordination nationale, chaque membre disposant d’un matricule unique et d’un QR Code pour accéder à sa page dédiée.",
     "description": "ALTARIS est une application web destinée à la gestion des servants d’autel du Cameroun. Elle permet de centraliser les informations des servants depuis la paroisse jusqu’à la coordination nationale. Chaque membre dispose d’un matricule unique et d’un QR Code pour accéder à sa page dédiée. L’outil intègre également la gestion des bureaux à différents niveaux avec des rôles personnalisables, tout en offrant des fonctionnalités CRUD sécurisées pour les administrateurs.",
     "techStack": [
       "Python",
