@@ -47,12 +47,12 @@ const socialLinks = [
     },
     {
         name: 'WhatsApp',
-        href: 'https://wa.me/237690909496?text=Bonjour%20DevEkoc%2C%20je%20vous%20contacte%20depuis%20votre%20site%20web',
+        href: 'https://wa.me/237698452615?text=Bonjour%20DevEkoc%2C%20je%20vous%20contacte%20depuis%20votre%20site%20web',
         icon: FaWhatsapp,
     },
     {
         name: 'Téléphone',
-        href: 'tel:+237690909496',
+        href: 'tel:+237698452615',
         icon: FaPhone,
     },
 ];
@@ -105,29 +105,31 @@ export default function Footer() {
                         </nav>
                     </div>
 
-                    {/* Row 2: Social Icons (much less height) */}
-                    <div className="flex justify-center space-x-8 my-6">
-                        {socialLinks.map(social => (
-                            <motion.a
-                                key={social.name}
-                                href={social.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
-                                whileHover={{ scale: 1.2, y: -2 }}
-                                whileTap={{ scale: 0.9 }}
-                                aria-label={social.name}
-                            >
-                                <social.icon className="w-8 h-8" />
-                            </motion.a>
-                        ))}
+                    {/* Row 2: Social Icons (max 4 per row) */}
+                    <div className="flex justify-center my-6">
+                        <div className="grid grid-cols-4 sm:grid-cols-4 gap-6 sm:gap-8">
+                            {socialLinks.map(social => (
+                                <motion.a
+                                    key={social.name}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors flex justify-center"
+                                    whileHover={{ scale: 1.2, y: -2 }}
+                                    whileTap={{ scale: 0.9 }}
+                                    aria-label={social.name}
+                                >
+                                    <social.icon className="w-8 h-8" />
+                                </motion.a>
+                            ))}
+                        </div>
                     </div>
 
                     {/* Row 3: Copyright (much less height) */}
                     <div className="pt-4 mt-6 border-t border-gray-200 dark:border-gray-800">
                         <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
                             © {new Date().getFullYear()} Christophe Cédric EKOBENA.
-                            Tous droits réservés.
+                            <br/>Tous droits réservés.
                         </p>
                     </div>
                 </div>
