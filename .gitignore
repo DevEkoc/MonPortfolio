@@ -7,7 +7,7 @@ venv/
 node_modules/
 .env.local
 .env.local.example
-docIgnore/
+.docIgnore/
 # # Byte-compiled / optimized / DLL files
 # __pycache__/
 # *.py[cod]
