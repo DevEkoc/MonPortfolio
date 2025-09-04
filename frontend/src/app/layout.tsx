@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         template: '%s | DevEkoc',
     },
     description:
-        'Portfolio de Christophe Ekobena, développeur passionné. Découvrez mes projets, compétences et articles de blog sur les technologies web modernes.',
+        'Portfolio de Christophe Cédric Ekobena, développeur passionné. Découvrez mes projets, compétences et articles de blog sur les technologies web modernes.',
     keywords: [
         'développeur',
         'ingénieur',
@@ -44,12 +44,12 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'DevEkoc - Ingénieur Logiciel & Développeur Full-Stack',
         description:
-            'Portfolio de Christophe Ekobena, développeur passionné.',
+            'Portfolio de Christophe Cédric Ekobena, développeur passionné. Découvrez mes projets, compétences et articles de blog sur les technologies web modernes.',
         url: 'https://www.devekoc.com',
         siteName: 'DevEkoc Portfolio',
         images: [
             {
-                url: '/images/eko.webp', // Chemin vers l'image OG
+                url: '/images/eko1.webp', // Chemin vers l'image OG
                 width: 800,
                 height: 600,
                 alt: 'Photo de Christophe Ekobena',
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
         description:
             'Portfolio de Christophe Ekobena, développeur passionné.',
         creator: '@Chris_Ekobena',
-        images: ['/images/eko.webp'],
+        images: ['/images/eko1.webp'],
     },
 
     robots: {

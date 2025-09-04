@@ -10,6 +10,8 @@ import {
     FaFacebook,
     FaInstagram,
     FaEnvelope,
+    FaWhatsapp,
+    FaPhone,
 } from 'react-icons/fa';
 
 const socialLinks = [
@@ -40,8 +42,18 @@ const socialLinks = [
     },
     {
         name: 'Gmail',
-        href: 'mailto:christcedricekobena@gmail.com',
+        href: 'mailto:christophecedricekobena@devekoc.com',
         icon: FaEnvelope,
+    },
+    {
+        name: 'WhatsApp',
+        href: 'https://wa.me/237690909496?text=Bonjour%20DevEkoc%2C%20je%20vous%20contacte%20depuis%20votre%20site%20web',
+        icon: FaWhatsapp,
+    },
+    {
+        name: 'Téléphone',
+        href: 'tel:+237690909496',
+        icon: FaPhone,
     },
 ];
 

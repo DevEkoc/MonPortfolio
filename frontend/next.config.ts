@@ -45,9 +45,12 @@ const nextConfig: NextConfig = {
         removeConsole: process.env.NODE_ENV === 'production',
     },
     
-    // Optimisation des chunks
+    // Optimisation des chunks (seulement en production)
     webpack: (config, { dev, isServer }) => {
-        if (!dev && !isServer) {
+        // Ne pas configurer webpack en dev si turbopack est activé
+        if (dev) return config;
+        
+        if (!isServer) {
             config.optimization.splitChunks = {
                 ...config.optimization.splitChunks,
                 cacheGroups: {
