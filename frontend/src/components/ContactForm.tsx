@@ -2,11 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import { z } from 'zod';
-// Note: API calls removed - using static data now
+import emailjs from '@emailjs/browser';
+import ReCAPTCHA from 'react-google-recaptcha';
 import Container from './Container';
-import {
-    motion
-} from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
     staggerContainer,
     fadeInUp,
@@ -42,15 +41,19 @@ const ContactForm: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
     const animationControls = useInViewAnimation();
 
     useEffect(() => {
-        if (successMessage) {
-            const timer = setTimeout(() => setSuccessMessage(null), 5000);
+        if (successMessage || errorMessage) {
+            const timer = setTimeout(() => {
+                setSuccessMessage(null);
+                setErrorMessage(null);
+            }, 5000);
             return () => clearTimeout(timer);
         }
-    }, [successMessage]);
+    }, [successMessage, errorMessage]);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -66,22 +69,68 @@ const ContactForm: React.FC = () => {
         setErrorMessage(null);
         setErrors([]);
 
+        // Validation avec Zod
+        const validationResult = contactFormSchema.safeParse(formData);
+        if (!validationResult.success) {
+            setErrors(validationResult.error.issues);
+            setErrorMessage('Veuillez corriger les erreurs.');
+            setLoading(false);
+            return;
+        }
+
+        // Vérification Honeypot
+        if (formData.honeypot) {
+            console.log("Bot détecté !");
+            setLoading(false);
+            return;
+        }
+
+        // Vérification reCAPTCHA
+        if (!recaptchaToken) {
+            setErrorMessage("Veuillez cocher la case reCAPTCHA.");
+            setLoading(false);
+            return;
+        }
+
+        // Récupération des clés depuis les variables d'environnement
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+        if (!serviceId || !templateId || !publicKey) {
+            setErrorMessage("Configuration d'envoi d'email manquante.");
+            setLoading(false);
+            return;
+        }
+
         try {
-            contactFormSchema.parse(formData);
-            
-            // Pour la version statique, on simule un succès
-            // TODO: Implémenter un service de contact externe (Formspree, EmailJS, etc.)
-            console.log('Message de contact:', formData);
+
+            // Envoi via EmailJS avec token reCAPTCHA
+            await emailjs.send(
+                serviceId,
+                templateId,
+                {
+                    name: formData.name,
+                    email: formData.email,
+                    subject: formData.subject || 'Nouveau message',
+                    message: formData.message,
+                    'g-recaptcha-response': recaptchaToken,
+                    sent_date: new Date().toLocaleString('fr-FR', {
+                        year: 'numeric',
+                        month: 'long', 
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    })
+                },
+                publicKey
+            );
             setSuccessMessage('Votre message a été envoyé avec succès !');
             setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
+            setRecaptchaToken(null); // Réinitialiser le token reCAPTCHA
         } catch (err) {
-            if (err instanceof z.ZodError) {
-                setErrors(err.issues);
-                setErrorMessage('Veuillez corriger les erreurs.');
-            } else {
-                console.error('Erreur lors de l\'envoi:', err);
-                setErrorMessage('Une erreur est survenue lors de l\'envoi du message.');
-            }
+            console.error("Erreur lors de l'envoi via EmailJS:", err);
+            setErrorMessage("Une erreur est survenue lors de l'envoi du message.");
         } finally {
             setLoading(false);
         }
@@ -118,8 +167,7 @@ const ContactForm: React.FC = () => {
                                 {errorMessage}
                             </div>
                         )}
-                        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off">
-                            {/* Les champs du formulaire restent les mêmes... */}
+                        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off" noValidate>
                             <div>
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Nom</label>
                                 <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" autoComplete="name" />
@@ -143,10 +191,43 @@ const ContactForm: React.FC = () => {
                                 <label htmlFor="honeypot">Ne pas remplir</label>
                                 <input type="text" name="honeypot" id="honeypot" value={formData.honeypot} onChange={handleChange} tabIndex={-1} autoComplete="off" />
                             </div>
+                            
+                            {/* reCAPTCHA v2 */}
+                            <div className="flex justify-center">
+                                <ReCAPTCHA
+                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
+                                    onChange={(token) => {
+                                        setRecaptchaToken(token);
+                                        setErrorMessage(null); // Effacer l'erreur reCAPTCHA si elle existe
+                                    }}
+                                    onExpired={() => setRecaptchaToken(null)}
+                                    onError={() => {
+                                        setRecaptchaToken(null);
+                                        setErrorMessage("Erreur reCAPTCHA. Veuillez réessayer.");
+                                    }}
+                                    theme="light" // ou "dark" selon votre thème
+                                    size="normal" // ou "compact"
+                                />
+                            </div>
                             <div>
                                 <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed">
                                     {loading ? 'Envoi en cours...' : 'Envoyer le message'}
                                 </button>
+                            </div>
+                            
+                            {/* Badge reCAPTCHA */}
+                            <div className="text-center">
+                                <p className="text-xs text-gray-500 dark:text-gray-400">
+                                    Ce site est protégé par reCAPTCHA et la{' '}
+                                    <a href="https://policies.google.com/privacy" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                                        Politique de confidentialité
+                                    </a>{' '}
+                                    et les{' '}
+                                    <a href="https://policies.google.com/terms" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                                        Conditions d&lsquoutilisation
+                                    </a>{' '}
+                                    de Google s&lsquoappliquent.
+                                </p>
                             </div>
                         </form>
                     </motion.div>

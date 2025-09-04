@@ -5,7 +5,8 @@
       "Bash(taskkill:*)",
       "WebSearch",
       "Bash(python:*)",
-      "Bash(mkdir:*)"
+      "Bash(mkdir:*)",
+      "WebFetch(domain:console.cloud.google.com)"
     ],
     "deny": [],
     "ask": []

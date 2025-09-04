@@ -190,24 +190,34 @@ vercel --prod
 3. **Créer un template d'email**
    - Dashboard > "Email Templates"
    - "Create New Template"
-   - Template exemple :
+   - Template exemple compatible avec votre ContactForm :
      ```
-     Subject: Nouveau message de {{from_name}}
+     Subject: {{subject}} - Contact Portfolio
      
      Bonjour,
      
      Vous avez reçu un nouveau message depuis votre portfolio :
      
-     Nom: {{from_name}}
-     Email: {{from_email}}
+     Nom: {{name}}
+     Email: {{email}}
      Sujet: {{subject}}
+     Date: {{sent_date}}
      
      Message:
      {{message}}
      
      ---
      Envoyé depuis votre portfolio
+     reCAPTCHA vérifié: {{g-recaptcha-response}}
      ```
+
+   **Variables utilisées dans votre formulaire :**
+   - `{{name}}` : Nom du visiteur
+   - `{{email}}` : Email du visiteur  
+   - `{{subject}}` : Sujet du message (ou "Nouveau message" par défaut)
+   - `{{message}}` : Contenu du message
+   - `{{sent_date}}` : Date d'envoi formatée
+   - `{{g-recaptcha-response}}` : Token reCAPTCHA (pour validation)
 
 4. **Récupérer les clés**
    - Service ID : `service_xxxxxxx`
@@ -300,9 +310,9 @@ vercel --prod
    # Vercel redéploiera automatiquement
    ```
 
-## 🔒 Variables d'environnement (optionnel)
+## 🔒 Variables d'environnement (obligatoire pour reCAPTCHA)
 
-Pour plus de sécurité, vous pouvez utiliser des variables d'environnement :
+Pour le fonctionnement d'EmailJS et reCAPTCHA, vous devez configurer les variables d'environnement :
 
 1. **Créer .env.local**
    ```bash
@@ -310,18 +320,26 @@ Pour plus de sécurité, vous pouvez utiliser des variables d'environnement :
    NEXT_PUBLIC_EMAILJS_SERVICE_ID=service_xxxxxxx
    NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=template_xxxxxx
    NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=xxxxxxxxxxxxxx
+   NEXT_PUBLIC_RECAPTCHA_SITE_KEY=6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
    ```
 
-2. **Configurer sur Vercel**
+2. **Obtenir une clé reCAPTCHA**
+   - Aller sur [Google reCAPTCHA](https://www.google.com/recaptcha/admin/create)
+   - Choisir reCAPTCHA v2 "I'm not a robot" Checkbox
+   - Ajouter votre domaine (ex: monportfolio.com, localhost)
+   - Copier la clé du site (Site Key)
+
+3. **Configurer sur Vercel**
    - Dashboard Vercel > Settings > Environment Variables
-   - Ajouter les variables avec les mêmes noms
+   - Ajouter les 4 variables avec les mêmes noms
    - Redéployer
 
-3. **Utiliser dans le code**
+4. **Utiliser dans le code**
    ```typescript
    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+   const recaptchaSiteKey = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY;
    ```
 
 ## 📈 Améliorations supplémentaires

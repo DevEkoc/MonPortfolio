@@ -9,33 +9,39 @@ import {
     FaTwitter,
     FaFacebook,
     FaInstagram,
+    FaEnvelope,
 } from 'react-icons/fa';
 
 const socialLinks = [
     {
         name: 'GitHub',
-        href: 'https://github.com/Chris-Ekobena',
+        href: 'https://github.com/DevEkoc',
         icon: FaGithub,
     },
     {
         name: 'LinkedIn',
-        href: 'https://www.linkedin.com/in/christophe-ekobena/',
+        href: 'https://linkedin.com/in/christophe-cédric-ekobena-7a0a7328a',
         icon: FaLinkedin,
     },
     {
         name: 'Twitter',
-        href: 'https://twitter.com/Chris_Ekobena',
+        href: 'https://x.com/DevEkoc237',
         icon: FaTwitter,
     },
     {
         name: 'Facebook',
-        href: 'https://facebook.com',
+        href: 'https://www.facebook.com/cedric.denver.33',
         icon: FaFacebook,
     },
     {
         name: 'Instagram',
-        href: 'https://instagram.com',
+        href: 'https://www.instagram.com/cedr_eko/',
         icon: FaInstagram,
+    },
+    {
+        name: 'Gmail',
+        href: 'mailto:christcedricekobena@gmail.com',
+        icon: FaEnvelope,
     },
 ];
 

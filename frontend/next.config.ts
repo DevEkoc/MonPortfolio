@@ -1,5 +1,9 @@
 import type { NextConfig } from 'next';
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true'
+});
+
 const nextConfig: NextConfig = {
     // Optimisations pour les performances
     compress: true,
@@ -36,4 +40,4 @@ const nextConfig: NextConfig = {
     allowedDevOrigins: ['*'],
 };
 
-export default nextConfig;
+export default withBundleAnalyzer(nextConfig);
