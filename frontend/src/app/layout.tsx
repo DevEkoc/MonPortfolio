@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
     metadataBase: new URL('https://www.devekoc.com'),
     title: {
-        default: 'DevEkoc - Ingénieur Logiciel & Développeur Full-Stack',
+        default: 'DevEkoc - Ingénieur Logiciel & Développeur Full-Stack.',
         template: '%s | DevEkoc',
     },
     description:
