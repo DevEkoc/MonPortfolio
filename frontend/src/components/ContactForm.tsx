@@ -224,9 +224,9 @@ const ContactForm: React.FC = () => {
                                     </a>{' '}
                                     et les{' '}
                                     <a href="https://policies.google.com/terms" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
-                                        Conditions d'utilisation
+                                        Conditions d&apos;utilisation
                                     </a>{' '}
-                                    de Google s&lsquoappliquent.
+                                    de Google s&apos;appliquent.
                                 </p>
                             </div>
                         </form>
