@@ -93,9 +93,9 @@ const ContactForm: React.FC = () => {
         }
 
         // Récupération des clés depuis les variables d'environnement
-        const serviceId = process.env.EMAILJS_SERVICE_ID;
-        const templateId = process.env.EMAILJS_TEMPLATE_ID;
-        const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+        const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+        const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+        const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
         if (!serviceId || !templateId || !publicKey) {
             setErrorMessage("Configuration d'envoi d'email manquante.");
@@ -195,7 +195,7 @@ const ContactForm: React.FC = () => {
                             {/* reCAPTCHA v2 */}
                             <div className="flex justify-center">
                                 <ReCAPTCHA
-                                    sitekey={process.env.RECAPTCHA_SITE_KEY || ''}
+                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
                                     onChange={(token) => {
                                         setRecaptchaToken(token);
                                         setErrorMessage(null); // Effacer l'erreur reCAPTCHA si elle existe
