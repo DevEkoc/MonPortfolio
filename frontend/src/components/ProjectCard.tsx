@@ -52,7 +52,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     ))}
                 </div>
                 <div className="flex justify-end gap-4 mt-4">
-                    {project.demoUrl && (
+                    {project.demoUrl && project.demoUrl.trim() && (
                         <a
                             href={project.demoUrl}
                             target="_blank"
@@ -62,7 +62,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                             <FaExternalLinkAlt size={24} />
                         </a>
                     )}
-                    {project.codeUrl && (
+                    {project.codeUrl && project.codeUrl.trim() && (
                         <a
                             href={project.codeUrl}
                             target="_blank"

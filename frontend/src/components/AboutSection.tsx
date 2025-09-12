@@ -212,7 +212,7 @@ const AboutSection = () => {
                     className="mt-16 flex justify-center"
                 >
                     <a
-                        href="/docs/Curriculum-vitae-Christophe EKOBENA.pdf"
+                        href="/docs/Curriculum-vitae-DevEkoc.pdf"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-x-2 bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
