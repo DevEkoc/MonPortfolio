@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Container from './Container';
 import {
@@ -69,14 +70,25 @@ export default function Footer() {
         <footer className="bg-gray-50 dark:bg-gray-900 border-t-2 border-gray-200 dark:border-gray-700">
             <Container>
                 <div className="py-12">
-                    {/* Row 1: Logo/Desc and Nav */}
-                    <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
-                        {/* Column 1: Logo and Description (4/5 width) */}
-                        <div className="md:col-span-4 text-center md:text-left">
-                            <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400">
-                                DevEkoc.com
-                            </span>
-                            <p className="text-gray-600 dark:text-gray-400 mt-2 max-w-md mx-auto md:mx-0">
+                    {/* Mobile Layout */}
+                    <div className="md:hidden">
+                        {/* Row 1: Logo/Desc */}
+                        <div className="text-center mb-8">
+                            <Link
+                                href="/#home"
+                                className="flex items-center justify-center space-x-0"
+                            >
+                                <Image
+                                    src="/Logo DevEkoc transparent.png"
+                                    alt="Logo DevEkoc"
+                                    width={60}
+                                    height={60}
+                                />
+                                <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400">
+                                    DevEkoc.com
+                                </span>
+                            </Link>
+                            <p className="text-gray-600 dark:text-gray-400 mt-0 max-w-2xl mx-auto">
                                 Ce site a été conçu et réalisé par{' '}
                                 <b>Christophe Cédric EKOBENA</b> aka{' '}
                                 <i>DevEkoc</i>. Je suis Ingénieur en Génie
@@ -88,48 +100,120 @@ export default function Footer() {
                             </p>
                         </div>
 
-                        {/* Column 2: Navigation (1/5 width) */}
-                        <nav className="md:col-span-1 flex flex-col items-center md:items-start space-y-2">
-                            <h4 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-2">
-                                Navigation
-                            </h4>
-                            {navLinks.map(link => (
-                                <Link
-                                    key={link.name}
-                                    href={link.href}
-                                    className="text-gray-600 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors font-medium"
-                                >
-                                    {link.name}
-                                </Link>
-                            ))}
+                        {/* Row 2: Social Icons */}
+                        <div className="flex justify-center my-8">
+                            <div className="grid grid-cols-4 gap-6">
+                                {socialLinks.map(social => (
+                                    <motion.a
+                                        key={social.name}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors flex justify-center"
+                                        whileHover={{ scale: 1.2, y: -2 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        aria-label={social.name}
+                                    >
+                                        <social.icon className="w-8 h-8" />
+                                    </motion.a>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Row 3: Navigation */}
+                        <nav className="flex justify-center mb-6">
+                            <div className="flex flex-wrap justify-center gap-x-8 gap-y-2">
+                                {navLinks.map(link => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        className="text-gray-600 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors font-medium"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
+                            </div>
                         </nav>
                     </div>
 
-                    {/* Row 2: Social Icons (max 4 per row) */}
-                    <div className="flex justify-center my-6">
-                        <div className="grid grid-cols-4 sm:grid-cols-4 gap-6 sm:gap-8">
-                            {socialLinks.map(social => (
-                                <motion.a
-                                    key={social.name}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors flex justify-center"
-                                    whileHover={{ scale: 1.2, y: -2 }}
-                                    whileTap={{ scale: 0.9 }}
-                                    aria-label={social.name}
+                    {/* Desktop Layout */}
+                    <div className="hidden md:block">
+                        {/* Row 1: Logo/Desc and Nav */}
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-10">
+                            {/* Column 1: Logo and Description (4/5 width) */}
+                            <div className="md:col-span-4 text-center md:text-left">
+                                <Link
+                                    href="/#home"
+                                    className="flex items-center space-x-0"
                                 >
-                                    <social.icon className="w-8 h-8" />
-                                </motion.a>
-                            ))}
+                                    <Image
+                                        src="/Logo DevEkoc transparent.png"
+                                        alt="Logo DevEkoc"
+                                        width={60}
+                                        height={60}
+                                    />
+                                    <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400">
+                                        DevEkoc.com
+                                    </span>
+                                </Link>
+                                <p className="text-gray-600 dark:text-gray-400 mt-0 max-w-md mx-auto md:mx-0">
+                                    Ce site a été conçu et réalisé par{' '}
+                                    <b>Christophe Cédric EKOBENA</b> aka{' '}
+                                    <i>DevEkoc</i>. Je suis Ingénieur en Génie
+                                    Informatique, spécialisé dans le Génie
+                                    Logiciel. Ma mission est de créer des
+                                    expériences numériques modernes et efficaces
+                                    pour les entreprises et les paticuliers.
+                                    Vous pouvez me contacter à travers un des
+                                    liens ci-dessous :
+                                </p>
+                            </div>
+
+                            {/* Column 2: Navigation (1/5 width) */}
+                            <nav className="md:col-span-1 flex flex-col items-center md:items-start space-y-2">
+                                <h4 className="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wider mb-2">
+                                    Navigation
+                                </h4>
+                                {navLinks.map(link => (
+                                    <Link
+                                        key={link.name}
+                                        href={link.href}
+                                        className="text-gray-600 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors font-medium"
+                                    >
+                                        {link.name}
+                                    </Link>
+                                ))}
+                            </nav>
+                        </div>
+
+                        {/* Row 2: Social Icons (max 4 per row) */}
+                        <div className="flex justify-center my-6">
+                            <div className="grid grid-cols-4 sm:grid-cols-4 gap-6 sm:gap-8">
+                                {socialLinks.map(social => (
+                                    <motion.a
+                                        key={social.name}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-gray-500 dark:text-gray-400 hover:text-accent-600 dark:hover:text-accent-400 transition-colors flex justify-center"
+                                        whileHover={{ scale: 1.2, y: -2 }}
+                                        whileTap={{ scale: 0.9 }}
+                                        aria-label={social.name}
+                                    >
+                                        <social.icon className="w-8 h-8" />
+                                    </motion.a>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
-                    {/* Row 3: Copyright (much less height) */}
+                    {/* Copyright - Same for both layouts */}
                     <div className="pt-4 mt-6 border-t border-gray-200 dark:border-gray-800">
                         <p className="text-center text-gray-500 dark:text-gray-400 text-sm">
-                            © {new Date().getFullYear()} Christophe Cédric EKOBENA.
-                            <br/>Tous droits réservés.
+                            © {new Date().getFullYear()} Christophe Cédric
+                            EKOBENA.
+                            <br />
+                            Tous droits réservés.
                         </p>
                     </div>
                 </div>

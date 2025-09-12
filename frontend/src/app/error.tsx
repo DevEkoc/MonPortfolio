@@ -23,7 +23,8 @@ export default function Error({ error, reset }: ErrorProps) {
                         Une erreur est survenue
                     </h2>
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                        Désolé, quelque chose s&apos;est mal passé de notre côté.
+                        Désolé, quelque chose s&apos;est mal passé de notre
+                        côté.
                     </p>
                     <button
                         onClick={() => reset()}

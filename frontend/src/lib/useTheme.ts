@@ -19,7 +19,7 @@ export function useTheme() {
         // Logique pour déterminer le thème initial côté client uniquement
         const savedTheme = localStorage.getItem('theme') as Theme | null;
         const systemPrefersDark = window.matchMedia(
-            '(prefers-color-scheme: dark)',
+            '(prefers-color-scheme: dark)'
         ).matches;
 
         if (savedTheme) {

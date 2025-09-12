@@ -16,14 +16,15 @@ export async function generateMetadata({
     try {
         const resolvedParams = await params;
         const post = getPostBySlug(resolvedParams.slug);
-        
+
         if (!post) {
             return {
                 title: 'Article non trouvé | Blog',
-                description: 'Cet article n\'existe pas ou n\'est plus disponible.',
+                description:
+                    "Cet article n'existe pas ou n'est plus disponible.",
             };
         }
-        
+
         return {
             title: `${post.title} | Blog`,
             description: post.excerpt,
@@ -47,7 +48,7 @@ export async function generateMetadata({
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const resolvedParams = await params;
     const post = getPostBySlug(resolvedParams.slug);
-    
+
     if (!post) {
         notFound();
     }
@@ -74,21 +75,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                             </h1>
                             <div className="flex justify-center items-center space-x-4 text-gray-500 dark:text-gray-400">
                                 <div className="flex items-center">
-                                    <FiCalendar className="mr-2" />
+                                    <FiCalendar className="mr-2 w-5 h-5 flex-shrink-0" />
                                     <span>{publishedDate}</span>
                                 </div>
                                 {post.tags.length > 0 && (
-                                    <div className="flex items-center flex-wrap gap-2">
-                                        <FiTag className="mr-1.5" />
+                                    <div className="flex items-center">
+                                        <FiTag className="mr-1.5 w-5 h-5 flex-shrink-0" />
                                         {post.tags.join(', ')}
-                                        {/* {post.tags.map((tag, index) => (
-                                            <span
-                                                key={index}
-                                                className="inline-block bg-primary-100 text-primary-800 text-xs px-2 py-1 rounded-full"
-                                            >
-                                                {tag}
-                                            </span>
-                                        ))} */}
                                     </div>
                                 )}
                             </div>

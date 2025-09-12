@@ -22,22 +22,23 @@ const BlogSection: React.FC = () => {
     // Récupération des articles depuis les données statiques
     const posts = useMemo(() => {
         let filteredPosts = getPublishedPosts();
-        
+
         // Filtrer par tag si sélectionné
         if (selectedTag) {
             filteredPosts = getPostsByTag(selectedTag);
         }
-        
+
         // Filtrer par recherche textuelle
         if (searchQuery) {
             const query = searchQuery.toLowerCase();
-            filteredPosts = filteredPosts.filter(post => 
-                post.title.toLowerCase().includes(query) ||
-                post.excerpt.toLowerCase().includes(query) ||
-                post.tags.some(tag => tag.toLowerCase().includes(query))
+            filteredPosts = filteredPosts.filter(
+                post =>
+                    post.title.toLowerCase().includes(query) ||
+                    post.excerpt.toLowerCase().includes(query) ||
+                    post.tags.some(tag => tag.toLowerCase().includes(query))
             );
         }
-        
+
         return filteredPosts;
     }, [selectedTag, searchQuery]);
 
@@ -102,7 +103,9 @@ const BlogSection: React.FC = () => {
                             className="text-center mt-12"
                         >
                             <button
-                                onClick={() => setDisplayLimit(prev => prev + 6)}
+                                onClick={() =>
+                                    setDisplayLimit(prev => prev + 6)
+                                }
                                 className="bg-primary-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-primary-700 transition-colors duration-300"
                             >
                                 Charger plus

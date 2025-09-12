@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import Container from './Container';
 import ThemeToggle from './ThemeToggle';
+import Image from 'next/image';
 
 const navigation = [
     { name: 'Accueil', href: '/#home' },
@@ -28,16 +29,16 @@ export default function Navbar() {
                     {/* Logo */}
                     <Link
                         href="/#home"
-                        className="flex items-center space-x-2 text-xl font-bold text-gray-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
+                        className="flex items-center space-x-0 text-xl font-bold text-gray-900 dark:text-white hover:text-accent-600 dark:hover:text-accent-400 transition-colors"
                     >
-                        {/* <Image
-                            src="/logo.svg"
+                        <Image
+                            src="/Logo DevEkoc transparent.png"
                             alt="Logo DevEkoc"
-                            width={120}
-                            height={120}
-                            className="dark:invert"
-                        /> */}
-                        <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400 my-4 leading-relaxed">
+                            width={60}
+                            height={60}
+                            // className="dark:invert"
+                        />
+                        <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-500 to-orange-500 dark:from-primary-400 dark:to-orange-400 mx-0 leading-relaxed">
                             DevEkoc.com
                         </span>
                     </Link>

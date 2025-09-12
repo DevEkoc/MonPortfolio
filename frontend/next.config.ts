@@ -1,14 +1,14 @@
 import type { NextConfig } from 'next';
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-    enabled: process.env.ANALYZE === 'true'
+    enabled: process.env.ANALYZE === 'true',
 });
 
 const nextConfig: NextConfig = {
     // Optimisations pour les performances
     compress: true,
     poweredByHeader: false,
-    
+
     // Configuration des images optimisée
     images: {
         formats: ['image/webp', 'image/avif'],
@@ -30,50 +30,47 @@ const nextConfig: NextConfig = {
             },
         ],
     },
-    
+
     // Optimisations expérimentales
     experimental: {
         scrollRestoration: true,
-        optimizePackageImports: ['framer-motion', 'react-google-recaptcha', 'emailjs-com'],
+        optimizePackageImports: [
+            'framer-motion',
+            'react-google-recaptcha',
+            'emailjs-com',
+        ],
     },
-    
+
     // Compression et optimisation
     productionBrowserSourceMaps: false,
-    
+
     // Configuration du compilateur
     compiler: {
         removeConsole: process.env.NODE_ENV === 'production',
     },
-    
-    // Optimisation des chunks (seulement en production)
-    webpack: (config, { dev, isServer }) => {
-        // Ne pas configurer webpack en dev si turbopack est activé
-        if (dev) return config;
-        
-        if (!isServer) {
-            config.optimization.splitChunks = {
-                ...config.optimization.splitChunks,
-                cacheGroups: {
-                    ...config.optimization.splitChunks.cacheGroups,
-                    framerMotion: {
-                        name: 'framer-motion',
-                        test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
-                        chunks: 'all',
-                        priority: 30,
-                        enforce: true,
-                    },
-                    animations: {
-                        name: 'animations',
-                        test: /[\\/]src[\\/]lib[\\/]animations/,
-                        chunks: 'all',
-                        priority: 20,
-                        enforce: true,
-                    },
-                },
-            };
-        }
-        return config;
-    },
+
+    // Webpack désactivé pour utiliser Turbopack en dev
+    // Configuration webpack uniquement pour la production
+    // webpack: (config, { dev, isServer }) => {
+    //     if (dev) return config;
+    //
+    //     if (!isServer) {
+    //         config.optimization.splitChunks = {
+    //             ...config.optimization.splitChunks,
+    //             cacheGroups: {
+    //                 ...config.optimization.splitChunks.cacheGroups,
+    //                 framerMotion: {
+    //                     name: 'framer-motion',
+    //                     test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+    //                     chunks: 'all',
+    //                     priority: 30,
+    //                     enforce: true,
+    //                 },
+    //             },
+    //         };
+    //     }
+    //     return config;
+    // },
 };
 
 export default withBundleAnalyzer(nextConfig);

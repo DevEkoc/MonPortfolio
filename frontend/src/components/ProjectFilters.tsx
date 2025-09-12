@@ -1,7 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Technology, technologies as staticTechnologies } from '@/data/technologies';
+import {
+    Technology,
+    technologies as staticTechnologies,
+} from '@/data/technologies';
 
 interface ProjectFiltersProps {
     onFilterChange: (filter: { type: string; value: string }) => void;

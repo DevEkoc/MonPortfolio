@@ -14,8 +14,8 @@ export default function NotFound() {
                         Page non trouvée
                     </h2>
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                        Désolé, la page que vous recherchez n&apos;existe pas ou a été
-                        déplacée.
+                        Désolé, la page que vous recherchez n&apos;existe pas ou
+                        a été déplacée.
                     </p>
                     <Link
                         href="/"

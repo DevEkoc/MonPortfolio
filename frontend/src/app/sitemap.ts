@@ -30,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     try {
         // Récupération des posts depuis les données statiques
         const posts = getPublishedPosts();
-        const postUrls = posts.map((post) => ({
+        const postUrls = posts.map(post => ({
             url: `${baseUrl}/blog/${post.slug}`,
             lastModified: new Date(post.updatedAt),
             changeFrequency: 'yearly' as const,
@@ -40,7 +40,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         return [...staticRoutes, ...postUrls];
     } catch (error) {
         console.error(
-            "Erreur lors de la génération des routes du blog pour le sitemap:",
+            'Erreur lors de la génération des routes du blog pour le sitemap:',
             error
         );
         // En cas d'erreur, on retourne au moins les routes statiques

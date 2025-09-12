@@ -80,14 +80,14 @@ const ContactForm: React.FC = () => {
 
         // Vérification Honeypot
         if (formData.honeypot) {
-            console.log("Bot détecté !");
+            console.log('Bot détecté !');
             setLoading(false);
             return;
         }
 
         // Vérification reCAPTCHA
         if (!recaptchaToken) {
-            setErrorMessage("Veuillez cocher la case reCAPTCHA.");
+            setErrorMessage('Veuillez cocher la case reCAPTCHA.');
             setLoading(false);
             return;
         }
@@ -104,7 +104,6 @@ const ContactForm: React.FC = () => {
         }
 
         try {
-
             // Envoi via EmailJS avec token reCAPTCHA
             await emailjs.send(
                 serviceId,
@@ -117,20 +116,28 @@ const ContactForm: React.FC = () => {
                     'g-recaptcha-response': recaptchaToken,
                     sent_date: new Date().toLocaleString('fr-FR', {
                         year: 'numeric',
-                        month: 'long', 
+                        month: 'long',
                         day: 'numeric',
                         hour: '2-digit',
-                        minute: '2-digit'
-                    })
+                        minute: '2-digit',
+                    }),
                 },
                 publicKey
             );
             setSuccessMessage('Votre message a été envoyé avec succès !');
-            setFormData({ name: '', email: '', subject: '', message: '', honeypot: '' });
+            setFormData({
+                name: '',
+                email: '',
+                subject: '',
+                message: '',
+                honeypot: '',
+            });
             setRecaptchaToken(null); // Réinitialiser le token reCAPTCHA
         } catch (err) {
             console.error("Erreur lors de l'envoi via EmailJS:", err);
-            setErrorMessage("Une erreur est survenue lors de l'envoi du message.");
+            setErrorMessage(
+                "Une erreur est survenue lors de l'envoi du message."
+            );
         } finally {
             setLoading(false);
         }
@@ -144,7 +151,10 @@ const ContactForm: React.FC = () => {
         <section id="contact" className="py-16 bg-gray-50 dark:bg-gray-900">
             <Container>
                 <motion.div {...animationControls} variants={staggerContainer}>
-                    <motion.div variants={fadeInUp} className="text-center mb-12">
+                    <motion.div
+                        variants={fadeInUp}
+                        className="text-center mb-12"
+                    >
                         <h2 className="text-4xl font-bold tracking-tight sm:text-5xl">
                             Contactez-moi
                         </h2>
@@ -167,63 +177,160 @@ const ContactForm: React.FC = () => {
                                 {errorMessage}
                             </div>
                         )}
-                        <form onSubmit={handleSubmit} className="space-y-6" autoComplete="off" noValidate>
+                        <form
+                            onSubmit={handleSubmit}
+                            className="space-y-6"
+                            autoComplete="off"
+                            noValidate
+                        >
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Nom</label>
-                                <input type="text" name="name" id="name" value={formData.name} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" autoComplete="name" />
-                                {getError('name') && <p className="mt-1 text-sm text-red-600">{getError('name')}</p>}
+                                <label
+                                    htmlFor="name"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                                >
+                                    Nom
+                                </label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    id="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                                    autoComplete="name"
+                                />
+                                {getError('name') && (
+                                    <p className="mt-1 text-sm text-red-600">
+                                        {getError('name')}
+                                    </p>
+                                )}
                             </div>
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
-                                <input type="email" name="email" id="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" autoComplete="email" />
-                                {getError('email') && <p className="mt-1 text-sm text-red-600">{getError('email')}</p>}
+                                <label
+                                    htmlFor="email"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                                >
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    id="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                                    autoComplete="email"
+                                />
+                                {getError('email') && (
+                                    <p className="mt-1 text-sm text-red-600">
+                                        {getError('email')}
+                                    </p>
+                                )}
                             </div>
                             <div>
-                                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Sujet (optionnel)</label>
-                                <input type="text" name="subject" id="subject" value={formData.subject} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100" />
+                                <label
+                                    htmlFor="subject"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                                >
+                                    Sujet (optionnel)
+                                </label>
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    id="subject"
+                                    value={formData.subject}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                                />
                             </div>
                             <div>
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-200">Message</label>
-                                <textarea name="message" id="message" rows={5} value={formData.message} onChange={handleChange} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"></textarea>
-                                {getError('message') && <p className="mt-1 text-sm text-red-600">{getError('message')}</p>}
+                                <label
+                                    htmlFor="message"
+                                    className="block text-sm font-medium text-gray-700 dark:text-gray-200"
+                                >
+                                    Message
+                                </label>
+                                <textarea
+                                    name="message"
+                                    id="message"
+                                    rows={5}
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
+                                ></textarea>
+                                {getError('message') && (
+                                    <p className="mt-1 text-sm text-red-600">
+                                        {getError('message')}
+                                    </p>
+                                )}
                             </div>
                             <div style={{ display: 'none' }}>
                                 <label htmlFor="honeypot">Ne pas remplir</label>
-                                <input type="text" name="honeypot" id="honeypot" value={formData.honeypot} onChange={handleChange} tabIndex={-1} autoComplete="off" />
+                                <input
+                                    type="text"
+                                    name="honeypot"
+                                    id="honeypot"
+                                    value={formData.honeypot}
+                                    onChange={handleChange}
+                                    tabIndex={-1}
+                                    autoComplete="off"
+                                />
                             </div>
-                            
+
                             {/* reCAPTCHA v2 */}
                             <div className="flex justify-center">
                                 <ReCAPTCHA
-                                    sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || ''}
-                                    onChange={(token) => {
+                                    sitekey={
+                                        process.env
+                                            .NEXT_PUBLIC_RECAPTCHA_SITE_KEY ||
+                                        ''
+                                    }
+                                    onChange={token => {
                                         setRecaptchaToken(token);
                                         setErrorMessage(null); // Effacer l'erreur reCAPTCHA si elle existe
                                     }}
                                     onExpired={() => setRecaptchaToken(null)}
                                     onError={() => {
                                         setRecaptchaToken(null);
-                                        setErrorMessage("Erreur reCAPTCHA. Veuillez réessayer.");
+                                        setErrorMessage(
+                                            'Erreur reCAPTCHA. Veuillez réessayer.'
+                                        );
                                     }}
                                     theme="light" // ou "dark" selon votre thème
                                     size="normal" // ou "compact"
                                 />
                             </div>
                             <div>
-                                <button type="submit" disabled={loading} className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed">
-                                    {loading ? 'Envoi en cours...' : 'Envoyer le message'}
+                                <button
+                                    type="submit"
+                                    disabled={loading}
+                                    className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                                >
+                                    {loading
+                                        ? 'Envoi en cours...'
+                                        : 'Envoyer le message'}
                                 </button>
                             </div>
-                            
+
                             {/* Badge reCAPTCHA */}
                             <div className="text-center">
                                 <p className="text-xs text-gray-500 dark:text-gray-400">
                                     Ce site est protégé par reCAPTCHA et la{' '}
-                                    <a href="https://policies.google.com/privacy" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                                    <a
+                                        href="https://policies.google.com/privacy"
+                                        className="text-primary-600 hover:underline"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         Politique de confidentialité
                                     </a>{' '}
                                     et les{' '}
-                                    <a href="https://policies.google.com/terms" className="text-primary-600 hover:underline" target="_blank" rel="noopener noreferrer">
+                                    <a
+                                        href="https://policies.google.com/terms"
+                                        className="text-primary-600 hover:underline"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         Conditions d&apos;utilisation
                                     </a>{' '}
                                     de Google s&apos;appliquent.

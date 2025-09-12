@@ -90,7 +90,7 @@ const AboutSection = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-x-12 gap-y-12">
-                    {/* Colonne de Gauche: Éducation & Photo */}
+                    {/* Colonne de Gauche: Photo & Formation (sur desktop), Photo & Bio (sur mobile) */}
                     <motion.div
                         variants={fadeInUp}
                         className="lg:col-span-2 space-y-8"
@@ -105,6 +105,25 @@ const AboutSection = () => {
                                 height={400}
                                 className="relative w-full h-auto rounded-full object-cover border-8 border-white dark:border-gray-900 shadow-2xl"
                             />
+                        </div>
+
+                        {/* Bio - Affiché sur mobile après la photo, masqué sur desktop */}
+                        <div className="lg:hidden">
+                            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                                Passionné par l&apos;informatique depuis le
+                                lycée, mon parcours académique en génie logiciel
+                                et mes expériences professionnelles m&apos;ont
+                                permis d&apos;explorer un large éventail de
+                                technologies et de renforcer mon expertise en
+                                développement. Grâce à mes compétences en
+                                analyse et en conception de systèmes
+                                d&apos;information, je conçois des solutions
+                                adaptées, innovantes et orientées résultats.
+                                Polyvalent en tant que développeur full-stack,
+                                je me distingue particulièrement dans le
+                                backend, où je conçois des architectures
+                                robustes et performantes
+                            </p>
                         </div>
 
                         {/* Parcours Académique */}
@@ -134,22 +153,23 @@ const AboutSection = () => {
                         </div>
                     </motion.div>
 
-                    {/* Colonne de Droite: Bio & Expérience */}
+                    {/* Colonne de Droite: Bio & Expérience (sur desktop), Expérience seulement (sur mobile) */}
                     <motion.div variants={fadeInUp} className="lg:col-span-3">
-                        {/* Bio */}
-                        <div className="mb-12">
+                        {/* Bio - Affiché sur desktop seulement */}
+                        <div className="hidden lg:block mb-12">
                             <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                                Passionné par l’informatique depuis le lycée,
-                                mon parcours académique en génie logiciel et mes
-                                expériences professionnelles m’ont permis
-                                d’explorer un large éventail de technologies et
-                                de renforcer mon expertise en développement.
-                                Grâce à mes compétences en analyse et en
-                                conception de systèmes d’information, je conçois
-                                des solutions adaptées, innovantes et orientées
-                                résultats. Polyvalent en tant que développeur
-                                full-stack, je me distingue particulièrement
-                                dans le backend, où je conçois des architectures
+                                Passionné par l&apos;informatique depuis le
+                                lycée, mon parcours académique en génie logiciel
+                                et mes expériences professionnelles m&apos;ont
+                                permis d&apos;explorer un large éventail de
+                                technologies et de renforcer mon expertise en
+                                développement. Grâce à mes compétences en
+                                analyse et en conception de systèmes
+                                d&apos;information, je conçois des solutions
+                                adaptées, innovantes et orientées résultats.
+                                Polyvalent en tant que développeur full-stack,
+                                je me distingue particulièrement dans le
+                                backend, où je conçois des architectures
                                 robustes et performantes
                             </p>
                         </div>

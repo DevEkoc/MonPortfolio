@@ -74,14 +74,12 @@ const ProjectsSection = () => {
                         className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8"
                     >
                         <AnimatePresence>
-                            {projects
-                                .slice(0, displayLimit)
-                                .map(project => (
-                                    <ProjectCard
-                                        key={project.id}
-                                        project={project}
-                                    />
-                                ))}
+                            {projects.slice(0, displayLimit).map(project => (
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                />
+                            ))}
                         </AnimatePresence>
                     </motion.div>
 

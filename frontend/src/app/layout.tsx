@@ -63,8 +63,7 @@ export const metadata: Metadata = {
     twitter: {
         card: 'summary_large_image',
         title: 'DevEkoc - Ingénieur Logiciel & Développeur Full-Stack',
-        description:
-            'Portfolio de Christophe Ekobena, développeur passionné.',
+        description: 'Portfolio de Christophe Ekobena, développeur passionné.',
         creator: '@Chris_Ekobena',
         images: ['/images/eko1.webp'],
     },
@@ -95,10 +94,10 @@ export default function RootLayout({
     return (
         <html lang="fr" className="scroll-smooth">
             <head>
-                <link 
-                    rel="preload" 
-                    href="/images/eko1.webp" 
-                    as="image" 
+                <link
+                    rel="preload"
+                    href="/images/eko1.webp"
+                    as="image"
                     type="image/webp"
                 />
             </head>

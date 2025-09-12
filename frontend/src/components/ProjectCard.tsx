@@ -25,7 +25,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                         alt={`Image du projet ${project.title}`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover"
+                        className={
+                            project.id === 5 ? 'object-contain' : 'object-cover'
+                        }
                         loading="lazy"
                         placeholder="blur"
                         blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyEkJYgqScMucn6nqfxBKNGPBKjYjgsb8rYIYwUVSZIxOjwMMADcvs/rDHZ/XpOw3CNySTgJ4CkYYdoHUgf6vKgShJJ8BHCS1cT4JGQHf5JGKwH4fJCNRLUIbTWfttc7sTImdtVkQfhIwRwKxeXFbFIvwAhc4NiIiIiIiIiIg9bxJJGiXPdpOdLUYuLzLw9Dqv3JZjJCg=="
