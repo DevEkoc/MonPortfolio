@@ -13,15 +13,15 @@ import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
 // Les données restent les mêmes...
 const educationData = [
     {
-        degree: 'Ingénieur des Travaux en Génie Informatique - option Génie Logiciel',
+        degree: 'Licence Professionnelle en Génie Informatique - option Génie Logiciel',
         institution: 'Institut Universitaire Siantou, Yaoundé',
         date: '2024 - 2025',
     },
     {
-        degree: "Bac + 2 en Gestion des Systèmes d'Information",
+        degree: "Bac + 3 en Gestion des Systèmes d'Information",
         institution:
             'Institut Universitaire Catholique Sainte Thérèse de Yaoundé (INUCASTY)',
-        date: '2020 - 2022',
+        date: '2020 - 2023',
     },
     {
         degree: 'Baccalauréat',
@@ -44,7 +44,7 @@ const experienceData = [
         ],
     },
     {
-        title: 'Responsable Développement',
+        title: 'Stagiaire Développement',
         company: 'Global Corporation Group SARL',
         date: 'Novembre 2024 - Février 2025',
         location: 'Yaoundé, Cameroun',

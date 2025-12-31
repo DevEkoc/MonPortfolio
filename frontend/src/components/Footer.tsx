@@ -32,16 +32,6 @@ const socialLinks = [
         icon: FaTwitter,
     },
     {
-        name: 'Facebook',
-        href: 'https://www.facebook.com/cedric.denver.33',
-        icon: FaFacebook,
-    },
-    {
-        name: 'Instagram',
-        href: 'https://www.instagram.com/cedr_eko/',
-        icon: FaInstagram,
-    },
-    {
         name: 'Gmail',
         href: 'mailto:christophecedricekobena@devekoc.com',
         icon: FaEnvelope,
@@ -102,7 +92,7 @@ export default function Footer() {
 
                         {/* Row 2: Social Icons */}
                         <div className="flex justify-center my-8">
-                            <div className="grid grid-cols-4 gap-6">
+                            <div className="grid grid-cols-3 gap-6">
                                 {socialLinks.map(social => (
                                     <motion.a
                                         key={social.name}
@@ -188,7 +178,7 @@ export default function Footer() {
 
                         {/* Row 2: Social Icons (max 4 per row) */}
                         <div className="flex justify-center my-6">
-                            <div className="grid grid-cols-4 sm:grid-cols-4 gap-6 sm:gap-8">
+                            <div className="grid grid-cols-4 sm:grid-cols-3 gap-6 sm:gap-8">
                                 {socialLinks.map(social => (
                                     <motion.a
                                         key={social.name}

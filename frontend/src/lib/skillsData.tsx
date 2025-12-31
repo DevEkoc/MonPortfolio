@@ -22,6 +22,7 @@ import {
     SiMysql,
     SiSqlite,
     SiPostman,
+    SiSpring,
 } from 'react-icons/si';
 import { TbBrandCSharp } from 'react-icons/tb';
 import {
@@ -136,6 +137,10 @@ export const skillsData: SkillCategory[] = [
             {
                 name: 'Java',
                 icon: <FaJava className="h-8 w-8 text-white-500" />,
+            },
+            {
+                name: 'Spring',
+                icon: <SiSpring className="h-8 w-8 text-green-600" />,
             },
             {
                 name: '',

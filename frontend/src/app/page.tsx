@@ -35,9 +35,9 @@ export default function Home() {
     return (
         <Layout>
             <HeroOptimized />
-            <AboutSection />
             <SkillsSection />
             <ProjectsSection />
+            <AboutSection />
             <BlogSection />
             <DynamicContactForm />
         </Layout>

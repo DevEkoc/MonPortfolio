@@ -15,21 +15,37 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    // {
+    //     id: 1,
+    //     title: 'Mon Portfolio',
+    //     slug: 'mon-portfolio',
+    //     summary:
+    //         'Le site que vous consultez actuellement, conçu pour présenter mes compétences et projets.',
+    //     description:
+    //         'Un portfolio full-stack utilisant Next.js et Tailwind CSS pour le front-end, et Django pour le back-end API. Le projet est entièrement conteneurisé avec Docker.',
+    //     techStack: ['Django', 'Next.js', 'Tailwind CSS', 'Docker'],
+    //     image: '/images/default.webp',
+    //     demoUrl: '#',
+    //     codeUrl: '#',
+    //     status: 'published',
+    //     createdAt: '2025-08-19T16:57:53.660453+00:00',
+    //     updatedAt: '2025-08-19T16:57:53.660453+00:00',
+    // },
     {
         id: 1,
-        title: 'Mon Portfolio',
-        slug: 'mon-portfolio',
+        title: 'Projet CAMER ATLAS',
+        slug: 'projet-camer-atlas',
         summary:
-            'Le site que vous consultez actuellement, conçu pour présenter mes compétences et projets.',
+            'CAMER ATLAS est une application destinée à la centralisation, la consultation et l’exploitation des données territoriales du Cameroun. Le projet expose une API REST sécurisée, orientée métier, permettant un accès structuré et fiable aux informations territoriales.',
         description:
-            'Un portfolio full-stack utilisant Next.js et Tailwind CSS pour le front-end, et Django pour le back-end API. Le projet est entièrement conteneurisé avec Docker.',
-        techStack: ['Django', 'Next.js', 'Tailwind CSS', 'Docker'],
+            'CAMER ATLAS est une application destinée à la centralisation, la consultation et l’exploitation des données territoriales du Cameroun. Le projet expose une API REST sécurisée, orientée métier, permettant un accès structuré et fiable aux informations territoriales.',
+        techStack: ['Java', 'Spring', 'MySQL'],
         image: '/images/default.webp',
-        demoUrl: '#',
-        codeUrl: '#',
+        demoUrl: '',
+        codeUrl: 'https://github.com/DevEkoc/CamerAtlas.git',
         status: 'published',
-        createdAt: '2025-08-19T16:57:53.660453+00:00',
-        updatedAt: '2025-08-19T16:57:53.660453+00:00',
+        createdAt: '2025-08-23T07:51:24.242296+00:00',
+        updatedAt: '2025-08-25T12:35:07.055476+00:00',
     },
     {
         id: 2,
@@ -42,7 +58,7 @@ export const projects: Project[] = [
         techStack: ['Python', 'Django', 'MySQL', 'Docker', 'Angular'],
         image: '/images/altaris_project.webp',
         demoUrl: '',
-        codeUrl: 'https://github.com/DevEkoc/Projet-Altaris',
+        codeUrl: 'https://github.com/DevEkoc/Altaris.git',
         status: 'published',
         createdAt: '2025-08-23T07:51:24.242296+00:00',
         updatedAt: '2025-08-25T12:35:07.055476+00:00',

@@ -93,6 +93,10 @@ export const technologies: Technology[] = [
         id: 21,
         name: 'Vue.js',
     },
+    {
+        id: 22,
+        name: 'Spring Boot',
+    }
 ];
 
 // Helper pour récupérer une technologie par nom
