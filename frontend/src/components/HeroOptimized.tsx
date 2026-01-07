@@ -64,6 +64,12 @@ export default function HeroOptimized() {
                             >
                                 Me contacter
                             </Link>
+                            <Link
+                                href="/docs/Curriculum-vitae-DevEkoc.pdf"
+                                className="btn-primary text-lg px-8 py-4 inline-flex items-center shadow-lg shadow-primary-500/20 hover:scale-105 transition-transform"
+                            >
+                                Télécharger mon CV
+                            </Link>
                         </div>
                     </div>
                 </div>

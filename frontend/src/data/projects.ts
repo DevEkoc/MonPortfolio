@@ -15,47 +15,15 @@ export interface Project {
 }
 
 export const projects: Project[] = [
-    // {
-    //     id: 1,
-    //     title: 'Mon Portfolio',
-    //     slug: 'mon-portfolio',
-    //     summary:
-    //         'Le site que vous consultez actuellement, conçu pour présenter mes compétences et projets.',
-    //     description:
-    //         'Un portfolio full-stack utilisant Next.js et Tailwind CSS pour le front-end, et Django pour le back-end API. Le projet est entièrement conteneurisé avec Docker.',
-    //     techStack: ['Django', 'Next.js', 'Tailwind CSS', 'Docker'],
-    //     image: '/images/default.webp',
-    //     demoUrl: '#',
-    //     codeUrl: '#',
-    //     status: 'published',
-    //     createdAt: '2025-08-19T16:57:53.660453+00:00',
-    //     updatedAt: '2025-08-19T16:57:53.660453+00:00',
-    // },
     {
         id: 1,
-        title: 'Projet CAMER ATLAS',
-        slug: 'projet-camer-atlas',
-        summary:
-            'CAMER ATLAS est une application destinée à la centralisation, la consultation et l’exploitation des données territoriales du Cameroun. Le projet expose une API REST sécurisée, orientée métier, permettant un accès structuré et fiable aux informations territoriales.',
-        description:
-            'CAMER ATLAS est une application destinée à la centralisation, la consultation et l’exploitation des données territoriales du Cameroun. Le projet expose une API REST sécurisée, orientée métier, permettant un accès structuré et fiable aux informations territoriales.',
-        techStack: ['Java', 'Spring', 'MySQL'],
-        image: '/images/default.webp',
-        demoUrl: '',
-        codeUrl: 'https://github.com/DevEkoc/CamerAtlas.git',
-        status: 'published',
-        createdAt: '2025-08-23T07:51:24.242296+00:00',
-        updatedAt: '2025-08-25T12:35:07.055476+00:00',
-    },
-    {
-        id: 2,
-        title: 'Projet ALTARIS',
+        title: 'ALTARIS',
         slug: 'projet-altaris',
         summary:
-            'ALTARIS est une application de gestion des servants d’autel du Cameroun. Elle permet de centraliser les informations des servants depuis la paroisse jusqu’à la coordination nationale, chaque membre disposant d’un matricule unique et d’un QR Code pour accéder à sa page dédiée.',
+            'ALTARIS est une application web de gestion centralisée des servants d’autel du Cameroun, permettant l’organisation des données, la gestion des rôles et la sécurisation des accès.',
         description:
-            'ALTARIS est une application web destinée à la gestion des servants d’autel du Cameroun. Elle permet de centraliser les informations des servants depuis la paroisse jusqu’à la coordination nationale. Chaque membre dispose d’un matricule unique et d’un QR Code pour accéder à sa page dédiée. L’outil intègre également la gestion des bureaux à différents niveaux avec des rôles personnalisables, tout en offrant des fonctionnalités CRUD sécurisées pour les administrateurs.',
-        techStack: ['Java', 'Spring', 'MySQL', 'Docker'],
+            'ALTARIS est une application de gestion centralisée des servants d’autel du Cameroun. Elle permet la structuration et l’organisation des données administratives, la gestion des rôles utilisateurs, la sécurisation des accès et la fiabilisation des informations. Le projet inclut la mise en place d’une base de données structurée, le traitement des données, ainsi que la documentation et les tests des fonctionnalités.',
+        techStack: ['Java', 'Spring Boot', 'Spring Web MVC', 'Spring Security', 'Spring Data JPA', 'Springdoc OpenAPI', 'Hibernate', 'JUnit', 'Mockito', 'MySQL'],
         image: '/images/altaris_project.webp',
         demoUrl: '',
         codeUrl: 'https://github.com/DevEkoc/Altaris.git',
@@ -64,14 +32,30 @@ export const projects: Project[] = [
         updatedAt: '2025-08-25T12:35:07.055476+00:00',
     },
     {
-        id: 3,
-        title: "Projet Mbenda'a",
-        slug: 'projet-mbendaa',
+        id: 2,
+        title: 'CAMER ALTAS',
+        slug: 'projet-camer-altas',
         summary:
-            'Mbenda est une application de bureau développée entièrement en Java, conçue pour la gestion des registres paroissiaux (Baptême, Communion, Confirmation et Mariage), pour une manipulation simplifiée et organisée des données sur les sacrements.',
+            'CAMER ALTAS est une application de centralisation et de consultation des données territoriales du Cameroun.',
         description:
-            "Mbenda est une application de bureau développée en Java avec l'interface utilisateur Java Swing et le thème moderne FlatLaf. Son objectif est d'offrir une solution complète et conviviale pour la gestion des registres d'une paroisse.\r\n\r\nChaque module (Baptême, Communion, Confirmation et Mariage) est doté de fonctionnalités CRUD complètes (Création, Lecture, Mise à jour, Suppression), permettant une manipulation aisée des enregistrements. L'application est architecturée selon le modèle MVC pour une meilleure séparation des préoccupations, rendant le code plus maintenable et évolutif.\r\n\r\nLa persistance des données est assurée par une base de données MySQL. L'installation du projet est simple grâce à son intégration avec l'IDE NetBeans et son script de base de données inclus, ce qui en fait un outil pratique et efficace pour les utilisateurs non techniques.",
-        techStack: ['MySQL', 'Java', 'Swing'],
+            'CAMER ALTAS est une application permettant la centralisation, la consultation et l’exploitation des données territoriales du Cameroun. Elle intègre un système de gestion des rôles (consultation, contributeur, administrateur), une API pour l’exposition sécurisée des données, ainsi qu’un mécanisme de suggestions avec validation ou rejet automatique afin d’améliorer la fiabilité des informations.',
+        techStack: ['Java', 'Spring Boot', 'Spring Web MVC', 'Spring Security', 'Spring Data JPA', 'Springdoc OpenAPI', 'Hibernate', 'JUnit', 'Mockito', 'MySQL'],
+        image: '/images/default.webp',
+        demoUrl: '',
+        codeUrl: 'https://github.com/DevEkoc/CamerAtlas.git',
+        status: 'published',
+        createdAt: '2025-08-23T07:51:24.242296+00:00',
+        updatedAt: '2025-08-25T12:35:07.055476+00:00',
+    },
+    {
+        id: 3,
+        title: 'Gestion des certificats de baptême',
+        slug: 'gestion-certificats-bapteme',
+        summary:
+            'Application permettant l’informatisation des registres de baptême et l’automatisation de la génération des certificats.',
+        description:
+            'Cette application permet l’informatisation de registres de sacrements (baptême, communion, confirmation et mariage) existants, l’enregistrement et la consultation des informations des chrétiens ayant reçu les sacrements, ainsi que l’automatisation de la génération des certificats de baptême. Le projet met l’accent sur la fiabilisation des données utilisateurs et l’amélioration de la gestion administrative.',
+        techStack: ['Java', 'Swing', 'MySQL'],
         image: '/images/default.webp',
         demoUrl: '',
         codeUrl: 'https://github.com/DevEkoc/Projet-Mbenda',
@@ -79,6 +63,7 @@ export const projects: Project[] = [
         createdAt: '2025-08-25T11:38:08.035971+00:00',
         updatedAt: '2025-08-25T12:13:27.551016+00:00',
     },
+
     {
         id: 4,
         title: 'Téléchargeur Youtube by DevEkoc',

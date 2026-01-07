@@ -34,7 +34,7 @@ function AnimatedNumbers({ value }: { value: number }) {
 
 const stats = [
     {
-        value: 50,
+        value: 20,
         label: 'Projets Réalisés',
         icon: (
             <svg
@@ -53,7 +53,7 @@ const stats = [
         ),
     },
     {
-        value: 3,
+        value: 2,
         label: "Années d'expérience",
         icon: (
             <svg

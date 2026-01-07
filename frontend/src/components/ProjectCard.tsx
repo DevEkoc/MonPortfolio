@@ -39,7 +39,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
                     {project.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300 mb-4">
-                    {project.summary}
+                    {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                     {project.techStack.map(tech => (
