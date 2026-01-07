@@ -14,14 +14,8 @@ import { GraduationCap, Briefcase, MapPin } from 'lucide-react';
 const educationData = [
     {
         degree: 'Licence Professionnelle en Génie Informatique - option Génie Logiciel',
-        institution: 'Institut Universitaire Siantou, Yaoundé',
+        institution: 'Institut Universitaire Siantou sous tutelle Université de Bamenda, Yaoundé',
         date: '2024 - 2025',
-    },
-    {
-        degree: "Bac + 3 en Gestion des Systèmes d'Information",
-        institution:
-            'Institut Universitaire Catholique Sainte Thérèse de Yaoundé (INUCASTY)',
-        date: '2020 - 2023',
     },
     {
         degree: 'Baccalauréat',
